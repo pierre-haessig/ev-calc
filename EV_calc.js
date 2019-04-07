@@ -43,28 +43,41 @@ function Uncertain(nom, lb, ub) {
   this.ub = ub;
 
   this.toString = function(){
-    return this.nom.toLocaleString() + " [" +
-           this.lb.toLocaleString() + ", " +
-           this.ub.toLocaleString() + "]";
+    return this.nom.toLocaleString('en-US') + " [" +
+           this.lb.toLocaleString('en-US') + ", " +
+           this.ub.toLocaleString('en-US') + "]";
   }
 
-  this.round = function(n) {
-    //round the number to a reasonable precision
+  this.round = function() {
+    //round all numbers to a reasonable precision
     var ue = this.ub - this.nom;
     var le = this.nom - this.lb;
     // error
     var e = Math.max(ue, le);
-    // order of magnitude of the error (lower rounding);
-    var eom = Math.pow(10,Math.floor(Math.log10(e))-n);
 
-    var nom = Math.round(this.nom/eom)*eom;
-    var lb = Math.floor(this.lb/eom)*eom;
-    var ub = Math.ceil(this.ub/eom)*eom;
+    function round_err(a, e){
+      // round number a, tainted by error e, to a reasonable precision
+      var n=0; // extra precision wanted
+      var ref; // reference number for rounding
+      if (e<Math.abs(a)) {
+        ref = e;
+      } else {
+        ref = Math.abs(a);
+      }
+      // order of magnitude of the reference number
+      var om = Math.pow(10, Math.floor(Math.log10(ref))-n);
+      return Math.round(a/om)*om;
+    }
+
+    var nom = round_err(this.nom, e);
+    var lb = round_err(this.lb, e);
+    var ub = round_err(this.ub, e);
 
     return new Uncertain(nom, lb, ub);
   }
 }
 
+/* Computation */
 // Batt size:
 var bs = new Uncertain(80, 70, 90); //kWh
 // Batt man unit energy:
@@ -106,7 +119,10 @@ console.log('Distance to CO2 parity: ' + dpar + ' km');
 
 function onready() {
   console.log('doc loaded!')
-  document.getElementById('dpar').innerText = dpar.round(1) + ' km';
+  document.getElementById('evco2').innerText = evco2.round() + ' kgCO2/100 km';
+  document.getElementById('iceco2').innerText = iceco2.round() + ' kgCO2/100 km';
+  document.getElementById('diff_co2').innerText = diff_co2.round() + ' kgCO2/100 km';
+  document.getElementById('dpar').innerText = dpar.round() + ' km';
 };
 
 window.addEventListener("DOMContentLoaded", onready, false);
