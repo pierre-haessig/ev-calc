@@ -123,6 +123,12 @@ function onready() {
   document.getElementById('iceco2').innerText = iceco2.round() + ' kgCO2/100 km';
   document.getElementById('diff_co2').innerText = diff_co2.round() + ' kgCO2/100 km';
   document.getElementById('dpar').innerText = dpar.round() + ' km';
+
+  // listen to form changes:
+  var form  = document.getElementsByTagName('form')[0];
+  form.addEventListener("input", function (event) {
+    console.log('form input');
+  }, false);
 };
 
 window.addEventListener("DOMContentLoaded", onready, false);
