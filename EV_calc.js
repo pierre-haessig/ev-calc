@@ -129,6 +129,32 @@ function onready() {
   form.addEventListener("input", function (event) {
     console.log('form input');
   }, false);
+
+  // data validation
+
+  // uncertain inputs
+  var uncertain_in = ['bmue', 'mco2'];
+
+  for (let el of uncertain_in) {
+    // add the dynamic cross validation of lower and upper bounds
+    // with respect to the nominal value
+
+    // usage of let instead of var is crucial
+    // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Creating_closures_in_loops_A_common_mistake
+    let in_nom = document.getElementById(el + '_nom');
+    let in_lb = document.getElementById(el + '_lb');
+    let in_ub = document.getElementById(el + '_ub');
+
+    in_nom.addEventListener("change", function (event) {
+      if (in_nom.validity.valid) {
+        in_lb.max = in_nom.value; // lower bound should be smaller than nominal
+        in_lb.reportValidity();
+        in_ub.min = in_nom.value; // upper bound should be greater than nominal
+        in_ub.reportValidity();
+      }
+    }, false);
+  }
+
 };
 
 window.addEventListener("DOMContentLoaded", onready, false);
