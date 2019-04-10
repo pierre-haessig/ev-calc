@@ -1,42 +1,5 @@
 'use strict';
 
-function add(a,b) {
-  var nom = a.nom + b.nom;
-  var lb = a.lb + b.lb;
-  var ub = a.ub + b.ub;
-  return new Uncertain(nom, lb, ub);
-}
-
-function sub(a,b) {
-  var nom = a.nom - b.nom;
-  var lb = a.lb - b.ub;
-  var ub = a.ub - b.lb;
-  return new Uncertain(nom, lb, ub);
-}
-
-function mul(a,b) {
-  var nom = a.nom * b.nom;
-  var lb = Math.min(a.lb*b.lb, a.lb*b.ub, a.ub*b.lb, a.ub*b.ub);
-  var ub = Math.max(a.lb*b.lb, a.lb*b.ub, a.ub*b.lb, a.ub*b.ub);
-  return new Uncertain(nom, lb, ub);
-}
-
-function inv(a) {
-  var nom = 1/a.nom;
-  if (a.ub*a.lb >= 0) { // same sign
-    var lb = 1/a.ub;
-    var ub = 1/a.lb;
-  } else {
-    var lb = -Infinity;
-    var ub = +Infinity;
-  }
-  return new Uncertain(nom, lb, ub);
-}
-
-function div(a,b) {
-  return mul(a,inv(b));
-}
-
 function Uncertain(nom, lb, ub) {
   this.nom = nom;
   this.lb = lb;
@@ -77,6 +40,57 @@ function Uncertain(nom, lb, ub) {
   }
 }
 
+function asUncertain(a) {
+  if (!(a instanceof Uncertain)) a = new Uncertain(a,a,a);
+  return a;
+}
+
+function add(a,b) {
+  a = asUncertain(a);
+  b = asUncertain(b);
+  var nom = a.nom + b.nom;
+  var lb = a.lb + b.lb;
+  var ub = a.ub + b.ub;
+  return new Uncertain(nom, lb, ub);
+}
+
+function sub(a,b) {
+  a = asUncertain(a);
+  b = asUncertain(b);
+  var nom = a.nom - b.nom;
+  var lb = a.lb - b.ub;
+  var ub = a.ub - b.lb;
+  return new Uncertain(nom, lb, ub);
+}
+
+function mul(a,b) {
+  a = asUncertain(a);
+  b = asUncertain(b);
+  var nom = a.nom * b.nom;
+  var lb = Math.min(a.lb*b.lb, a.lb*b.ub, a.ub*b.lb, a.ub*b.ub);
+  var ub = Math.max(a.lb*b.lb, a.lb*b.ub, a.ub*b.lb, a.ub*b.ub);
+  return new Uncertain(nom, lb, ub);
+}
+
+function inv(a) {
+  a = asUncertain(a);
+  var nom = 1/a.nom;
+  if (a.ub*a.lb >= 0) { // same sign
+    var lb = 1/a.ub;
+    var ub = 1/a.lb;
+  } else {
+    var lb = -Infinity;
+    var ub = +Infinity;
+  }
+  return new Uncertain(nom, lb, ub);
+}
+
+function div(a,b) {
+  a = asUncertain(a);
+  b = asUncertain(b);
+  return mul(a,inv(b));
+}
+
 /* Computation */
 // Batt size:
 var bs = new Uncertain(80, 70, 90); //kWh
@@ -91,7 +105,7 @@ var mco2 = new Uncertain(0.236, 0.2, 0.3); // kgCO2/kWh
 var bmco2 = mul(bme, mco2);
 console.log('BM CO2: ' + bmco2 + ' kgCO2');
 
-//EV consum	20	kWh/100 km
+//EV consum
 var evc = new Uncertain(20, 19, 21); // kWh/100 km
 //ICE consum
 var icec = new Uncertain(6, 5.8, 6.2); // l/100 km
@@ -113,7 +127,7 @@ console.log('Diff CO2: ' + diff_co2 + ' kgCO2/100 km');
 
 // Distance to CO2 parity:
 var dpar = div(bmco2,diff_co2) // 100 km
-dpar = mul(dpar, new Uncertain(100,100,100)); // km
+dpar = mul(dpar, 100); // km
 console.log('Distance to CO2 parity: ' + dpar + ' km');
 
 
