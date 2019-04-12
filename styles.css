@@ -1,3 +1,8 @@
 input.number {
   width: 5em;
 }
+
+p.dpar {
+  border: 1px solid #0077aa;
+  background-color: #ddeeff;
+}

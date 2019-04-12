@@ -1,13 +1,43 @@
 'use strict';
 
-function Uncertain(nom, lb, ub) {
-  this.nom = nom;
-  this.lb = lb;
-  this.ub = ub;
+// uncertain input (id prefixes)
+var uncertain_in = ['bmue', 'mco2', 'evc', 'icec', 'cco2', 'gco2'];
+
+var input_units = {
+  bmue: 'kWh/kWh',
+  mco2: 'gCO2/kWh',
+  evc: 'kWh/100km',
+  icec: 'l/100km',
+  cco2: 'gCO2/kWh',
+  gco2: 'kgCO2/l'
+};
+
+/**
+ * Uncertain - creates an Uncertain number
+ * @constructor
+ *
+ * @param  {Number} nom   nominal value
+ * @param  {Number} lb    lower bound, optional
+ * @param  {Number} ub    upper bound, optional (defaults to lb)
+ * @param  {string} unit  unit, defaults to ''
+ * @return {Uncertain}    Uncertain number object
+ */
+function Uncertain(nom, lb, ub, unit='') {
+  this.nom = Number(nom);
+  if (lb === undefined || lb > nom)
+    this.lb = this.nom;
+  else
+    this.lb = Number(lb);
+  if (ub === undefined || ub < nom)
+    this.ub = this.nom;
+  else
+    this.ub = Number(ub);
+  this.unit = String(unit);
 
   this.toString = function(){
-    return this.nom.toLocaleString('en-US') + " [" +
-           this.lb.toLocaleString('en-US') + ", " +
+    unit = this.unit ? ' ' + this.unit : '';
+    return this.nom.toLocaleString('en-US') + unit + " [" +
+           this.lb.toLocaleString('en-US') + " — " +
            this.ub.toLocaleString('en-US') + "]";
   }
 
@@ -36,15 +66,18 @@ function Uncertain(nom, lb, ub) {
     var lb = round_err(this.lb, e);
     var ub = round_err(this.ub, e);
 
-    return new Uncertain(nom, lb, ub);
+    return new Uncertain(nom, lb, ub, this.unit);
   }
 }
 
 function asUncertain(a) {
-  if (!(a instanceof Uncertain)) a = new Uncertain(a,a,a);
+  if (!(a instanceof Uncertain)) a = new Uncertain(a);
   return a;
 }
 
+/* Arithmetic of Uncertain objects:
+   addtion, substraction, multiplication and division (using inverse)
+*/
 function add(a,b) {
   a = asUncertain(a);
   b = asUncertain(b);
@@ -91,63 +124,118 @@ function div(a,b) {
   return mul(a,inv(b));
 }
 
-/* Computation */
-// Batt size:
-var bs = new Uncertain(80, 70, 90); //kWh
-// Batt man unit energy:
-var bmue = new Uncertain(154.88/80*277.78, 500, 600);//kWh/kWh
-//Batt man energy: // kWh
-var bme = mul(bs,bmue);
-console.log('BM En: ' + bme + ' kWh');
-//Man CO2:
-var mco2 = new Uncertain(0.236, 0.2, 0.3); // kgCO2/kWh
-//Batt man CO2:
-var bmco2 = mul(bme, mco2);
-console.log('BM CO2: ' + bmco2 + ' kgCO2');
 
-//EV consum
-var evc = new Uncertain(20, 19, 21); // kWh/100 km
-//ICE consum
-var icec = new Uncertain(6, 5.8, 6.2); // l/100 km
+/******* Application logic *******/
 
-// charging CO2
-var cco2 = new Uncertain(0.550, 0.5, 0.6); // kgCO2/kWh
-// Gasoline CO2
-var gco2 = new Uncertain(2.28, 2.25, 2.3); // kgCO2/l
+/**
+ * collectInputs - collect calculator input data from the page form
+ *
+ * @return {object} collection of Uncertain inputs
+ */
+function collectInputs() {
+  // Battery size
+  var bs_nom = document.getElementById('bs').value;
+  var bs = new Uncertain(bs_nom); //kWh
 
-//EV CO2
-var evco2 = mul(evc,cco2); //kgCO2/100 km
-console.log('EV CO2: ' + evco2 + ' kgCO2/100 km');
-//ICE CO2
-var iceco2 = mul(icec,gco2); //kgCO2/100 km
-console.log('ICE CO2: ' + iceco2 + ' kgCO2/100 km');
-// CO2 emission difference (ICE-EV)
-var diff_co2 = sub(iceco2,evco2);
-console.log('Diff CO2: ' + diff_co2 + ' kgCO2/100 km');
+  var inputs = {bs: bs};
 
-// Distance to CO2 parity:
-var dpar = div(bmco2,diff_co2) // 100 km
-dpar = mul(dpar, 100); // km
-console.log('Distance to CO2 parity: ' + dpar + ' km');
+  for (let el of uncertain_in) {
+    var in_nom = document.getElementById(el + '_nom');
+    var in_lb = document.getElementById(el + '_lb');
+    var in_ub = document.getElementById(el + '_ub');
+    var unit = input_units[el];
+    var u = new Uncertain(in_nom.value, in_lb.value, in_ub.value, unit);
+    inputs[el] = u;
+  }
+
+  return inputs
+}
 
 
+/**
+ * computeOutputs - compute the Uncertain outputs of the calculator
+ *
+ * @param  {object} inputs collection of Uncertain inputs
+ * @return {object}        collection of Uncertain outputs
+ */
+function computeOutputs(inputs) {
+  // Battery manufacturing energy:
+  var bme = mul(inputs.bs, inputs.bmue);
+  bme.unit = 'kWh';
+  // Battery manufacturing CO2:
+  var bmco2 = mul(bme,
+                  mul(inputs.mco2, 1e-3));
+  bmco2.unit = 'kgCO2';
+
+  // EV CO2 usage emission
+  var evco2 = mul(inputs.evc,
+                  mul(inputs.cco2, 1e-3)); //
+  evco2.unit = 'kgCO2/100km';
+
+  //ICE CO2
+  var iceco2 = mul(inputs.icec, inputs.gco2);
+  iceco2.unit = 'kgCO2/100km';
+
+  // CO2 emission difference (ICE-EV)
+  var diff_co2 = sub(iceco2,evco2);
+  diff_co2.unit = 'kgCO2/100km';
+
+  // Distance to CO2 parity:
+  var dpar = div(bmco2,diff_co2) // 100 km
+  dpar = mul(dpar, 100); // km
+  dpar.unit = 'km';
+
+  /*console.log('BM En: ' + bme);
+  console.log('BM CO2: ' + bmco2);
+  console.log('EV CO2: ' + evco2);
+  console.log('ICE CO2: ' + iceco2);
+  console.log('Diff CO2: ' + diff_co2);
+  console.log('Distance to CO2 parity: ' + dpar);*/
+
+  var outputs = {
+    bme: bme,
+    bmco2: bmco2,
+    evco2: evco2,
+    iceco2: iceco2,
+    diff_co2: diff_co2,
+    dpar: dpar
+  };
+
+  return outputs
+}
+
+
+function displayOuputs(o) {
+  document.getElementById('bme').innerText = o.bme.round();
+  document.getElementById('bmco2').innerText = o.bmco2.round();
+  document.getElementById('evco2').innerText = o.evco2.round();
+  document.getElementById('iceco2').innerText = o.iceco2.round();
+  document.getElementById('diff_co2').innerText = o.diff_co2.round();
+  document.getElementById('dpar').innerText = o.dpar.round();
+}
+
+
+/**
+ * onready - entry point of the program, lauched when page is loaded
+ */
 function onready() {
   console.log('doc loaded!')
-  document.getElementById('evco2').innerText = evco2.round() + ' kgCO2/100 km';
-  document.getElementById('iceco2').innerText = iceco2.round() + ' kgCO2/100 km';
-  document.getElementById('diff_co2').innerText = diff_co2.round() + ' kgCO2/100 km';
-  document.getElementById('dpar').innerText = dpar.round() + ' km';
 
-  // listen to form changes:
+  // First computation and display
+  var inputs = collectInputs();
+  var outputs = computeOutputs(inputs);
+  displayOuputs(outputs);
+
+  // Listen to form changes:
   var form  = document.getElementsByTagName('form')[0];
   form.addEventListener("input", function (event) {
     console.log('form input');
+    var inputs = collectInputs();
+    var outputs = computeOutputs(inputs);
+    displayOuputs(outputs);
   }, false);
 
-  // data validation
-
-  // uncertain inputs
-  var uncertain_in = ['bmue', 'mco2'];
+  // Setup form data validation
 
   for (let el of uncertain_in) {
     // add the dynamic cross validation of lower and upper bounds
@@ -162,9 +250,13 @@ function onready() {
     in_nom.addEventListener("change", function (event) {
       if (in_nom.validity.valid) {
         in_lb.max = in_nom.value; // lower bound should be smaller than nominal
-        in_lb.reportValidity();
+        //in_lb.reportValidity();
+        if (Number(in_lb.value) > Number(in_nom.value))
+          in_lb.value = in_nom.value;
         in_ub.min = in_nom.value; // upper bound should be greater than nominal
-        in_ub.reportValidity();
+        if (Number(in_ub.value) < Number(in_nom.value))
+          in_ub.value = in_nom.value;
+        //in_ub.reportValidity();
       }
     }, false);
   }
