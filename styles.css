@@ -1,6 +1,19 @@
+body {
+  font-size: 1.4em;
+  font-family: Calibri, Carlito, sans-serif;
+}
+
 input.number {
   width: 5em;
+  font-size: 1em;
+  font-family: inherit;
 }
+
+label.lb, label.ub {
+  color:#555;
+  font-style: italic;
+}
+
 
 p.dpar {
   border: 1px solid #0077aa;

@@ -24,18 +24,20 @@
       <input type="number" class="number" name="bs" id="bs" min="0" step="any" value="80"> kWh
     </div>
     <div>
-      <label for="bmue_nom">Batt man unit energy:</label>
-      <input type="number" class="number" name="bmue_nom" id="bmue_nom" min="0" step="any" value="538"> kWh/kWh [
-      <input type="number" class="number" name="bmue_lb" id="bmue_lb" min="0" step="any" value="500">,
+      <label for="bmue_nom">Battery manufacturing energy intensity:</label>
+      <input type="number" class="number" name="bmue_nom" id="bmue_nom" min="0" step="any" value="538"> kWh/kWh,
+      <label for="bmue_lb" class="lb">from</label>
+      <input type="number" class="number" name="bmue_lb" id="bmue_lb" min="0" step="any" value="500">
+      <label for="bmue_ub" class="ub">to</label>
       <input type="number" class="number" name="bmue_ub" id="bmue_ub" min="0" step="any" value="600">
-      ]
     </div>
     <div>
       <label for="mco2_nom">Manufacturing energy CO2 intensity:</label>
-      <input type="number" class="number" name="mco2_nom" id="mco2_nom" min="0" step="any" value="236"> gCO2/kWh [
-      <input type="number" class="number" name="mco2_lb" id="mco2_lb" min="0" step="any" value="200">,
+      <input type="number" class="number" name="mco2_nom" id="mco2_nom" min="0" step="any" value="236"> gCO2/kWh,
+      <label for="mco2_lb" class="lb">from</label>
+      <input type="number" class="number" name="mco2_lb" id="mco2_lb" min="0" step="any" value="200">
+      <label for="mco2_ub" class="ub">to</label>
       <input type="number" class="number" name="mco2_ub" id="mco2_ub" min="0" step="any" value="300">
-      ]
     </div>
     <ul>
       <li>Battery manufacturing energy: <span id='bme'>…</span></li>
@@ -45,31 +47,35 @@
     <h2>Vehicle usage</h2>
     <div>
       <label for="evc_nom">EV consumption (at the plug):</label>
-      <input type="number" class="number" name="evc_nom" id="evc_nom" min="0" step="any" value="20"> kWh/100 km [
-      <input type="number" class="number" name="evc_lb" id="evc_lb" min="0" step="any" value="19">,
+      <input type="number" class="number" name="evc_nom" id="evc_nom" min="0" step="any" value="20"> kWh/100 km,
+      <label for="evc_lb" class="lb">from</label>
+      <input type="number" class="number" name="evc_lb" id="evc_lb" min="0" step="any" value="19">
+      <label for="evc_ub" class="ub">to</label>
       <input type="number" class="number" name="evc_ub" id="evc_ub" min="0" step="any" value="21">
-      ]
     </div>
     <div>
       <label for="icec_nom">ICE consumption:</label>
-      <input type="number" class="number" name="icec_nom" id="icec_nom" min="0" step="any" value="6"> l/100 km [
-      <input type="number" class="number" name="icec_lb" id="icec_lb" min="0" step="any" value="5.8">,
+      <input type="number" class="number" name="icec_nom" id="icec_nom" min="0" step="any" value="6"> l/100 km,
+      <label for="icec_lb" class="lb">from</label>
+      <input type="number" class="number" name="icec_lb" id="icec_lb" min="0" step="any" value="5.8">
+      <label for="icec_ub" class="ub">to</label>
       <input type="number" class="number" name="icec_ub" id="icec_ub" min="0" step="any" value="6.2">
-      ]
     </div>
     <div>
       <label for="cco2_nom">EV charging CO2 intensity:</label>
-      <input type="number" class="number" name="cco2_nom" id="cco2_nom" min="0" step="any" value="550"> gCO2/kWh [
-      <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="500">,
+      <input type="number" class="number" name="cco2_nom" id="cco2_nom" min="0" step="any" value="550"> gCO2/kWh,
+      <label for="cco2_lb" class="lb">from</label>
+      <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="500">
+      <label for="cco2_ub" class="ub">to</label>
       <input type="number" class="number" name="cco2_ub" id="cco2_ub" min="0" step="any" value="600">
-      ]
     </div>
     <div>
       <label for="gco2_nom">Gasoline CO2 content:</label>
-      <input type="number" class="number" name="gco2_nom" id="gco2_nom" min="0" step="any" value="2.28"> kgCO2/l [
-      <input type="number" class="number" name="gco2_lb" id="gco2_lb" min="0" step="any" value="2.25">,
+      <input type="number" class="number" name="gco2_nom" id="gco2_nom" min="0" step="any" value="2.28"> kgCO2/l
+      <label for="gco2_lb" class="lb">from</label>
+      <input type="number" class="number" name="gco2_lb" id="gco2_lb" min="0" step="any" value="2.25">
+      <label for="gco2_ub" class="ub">to</label>
       <input type="number" class="number" name="gco2_ub" id="gco2_ub" min="0" step="any" value="2.30">
-      ]
     </div>
 
     <h2>Results</h2>
@@ -83,10 +89,10 @@
     <p class='dpar'> Distance to EV-ICE CO2 parity: <span id='dpar'>…</span>
     </p>
 
-    <div>
+    <!--<div>
       <button type="submit">Save URL</button>
       <button type="reset">Defaults</button>
-    </div>
+    </div>-->
   </form>
 
 </body>
