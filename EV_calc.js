@@ -138,9 +138,9 @@ function setInputs(vals) {
     var input = document.getElementById(id);
     input.value = vals[id];
   }
-  //TODO: fire form input change event
-  var form = document.getElementsByTagName('form')['ev-calc'];
-  //form.fire event('input');
+
+  // update the calculator
+  update()
 }
 
 
@@ -233,23 +233,47 @@ function displayOuputs(o) {
 
 
 /**
+ * updateLocation - update the address bar with the value of all the inputs,
+ * without adding the the history.
+ */
+function updateLocation() {
+  var location = window.location.href.split('?')[0];
+  var sep = '?'
+  var inputs = document.getElementsByTagName('input')
+  for (var el of inputs) {
+    if (el.type != 'number') continue;
+    location += sep + el.name + '=' + el.value;
+    sep = '&';
+  }
+  window.history.replaceState({}, '', location);
+}
+
+
+/**
+ * update - collect inputs, compute and display results
+ */
+function update() {
+  console.log('update');
+  var inputs = collectInputs();
+  var outputs = computeOutputs(inputs);
+  displayOuputs(outputs);
+  updateLocation();
+}
+
+/**
  * onready - entry point of the program, lauched when page is loaded
  */
 function onready() {
   console.log('doc loaded!')
 
   // First computation and display
-  var inputs = collectInputs();
-  var outputs = computeOutputs(inputs);
-  displayOuputs(outputs);
+  update()
 
   // Listen to form changes:
   var form = document.getElementsByTagName('form')['ev-calc'];
   form.addEventListener("input", function (event) {
     console.log('form input');
-    var inputs = collectInputs();
-    var outputs = computeOutputs(inputs);
-    displayOuputs(outputs);
+    update()
   }, false);
 
   // Setup form data validation
