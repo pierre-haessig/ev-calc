@@ -127,8 +127,25 @@ function div(a,b) {
 
 /******* Application logic *******/
 
+
 /**
- * collectInputs - collect calculator input data from the page form
+ * setInputs - set values of input fields
+ *
+ * @param  {object} vals mapping {id: value}
+ */
+function setInputs(vals) {
+  for (var id in vals) {
+    var input = document.getElementById(id);
+    input.value = vals[id];
+  }
+  //TODO: fire form input change event
+  var form = document.getElementsByTagName('form')['ev-calc'];
+  //form.fire event('input');
+}
+
+
+/**
+ * collectInputs - collect calculator input data from the form
  *
  * @return {object} collection of Uncertain inputs
  */
@@ -227,7 +244,7 @@ function onready() {
   displayOuputs(outputs);
 
   // Listen to form changes:
-  var form  = document.getElementsByTagName('form')[0];
+  var form = document.getElementsByTagName('form')['ev-calc'];
   form.addEventListener("input", function (event) {
     console.log('form input');
     var inputs = collectInputs();

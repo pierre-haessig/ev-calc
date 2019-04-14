@@ -3,6 +3,10 @@ body {
   font-family: Calibri, Carlito, sans-serif;
 }
 
+.presets {
+  padding-left: 1em;
+}
+
 input.number {
   width: 5em;
   font-size: 1em;
