@@ -150,18 +150,23 @@ function setInputs(vals) {
  * @return {object} collection of Uncertain inputs
  */
 function collectInputs() {
+  // helper to get value from the form
+  function get(id) {
+    return document.getElementById(id).value;
+  }
+
   // Battery size
-  var bs_nom = document.getElementById('bs').value;
+  var bs_nom = get('bs');
   var bs = new Uncertain(bs_nom); //kWh
 
   var inputs = {bs: bs};
 
   for (let el of uncertain_in) {
-    var in_nom = document.getElementById(el + '_nom');
-    var in_lb = document.getElementById(el + '_lb');
-    var in_ub = document.getElementById(el + '_ub');
+    var in_nom = get(el + '_nom');
+    var in_lb = get(el + '_lb');
+    var in_ub = get(el + '_ub');
     var unit = input_units[el];
-    var u = new Uncertain(in_nom.value, in_lb.value, in_ub.value, unit);
+    var u = new Uncertain(in_nom, in_lb, in_ub, unit);
     inputs[el] = u;
   }
 
@@ -249,6 +254,27 @@ function updateLocation() {
 }
 
 
+
+/**
+ * populateForm - populate inputs from the location bar params,
+ * if any
+ */
+function populateForm() {
+  //read URL parameters from location bar
+  var urlParams = new URL(window.location).searchParams;
+
+  for (var [id,val] of urlParams.entries()) {
+    // get corresponding <input>, if any
+    var el = document.getElementById(id);
+    if (el !== null && el.value !== undefined) {
+      el.value = val;
+    }
+    else {
+      console.warn('Wrong url param: ', id, '=', val);
+    }
+  }
+}
+
 /**
  * update - collect inputs, compute and display results
  */
@@ -267,6 +293,7 @@ function onready() {
   console.log('doc loaded!')
 
   // First computation and display
+  populateForm()
   update()
 
   // Listen to form changes:
