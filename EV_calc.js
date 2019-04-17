@@ -170,6 +170,9 @@ function collectInputs() {
     inputs[el] = u;
   }
 
+  // rounding of results
+  inputs.round = document.getElementById('round').checked;
+
   return inputs
 }
 
@@ -227,13 +230,23 @@ function computeOutputs(inputs) {
 }
 
 
-function displayOuputs(o) {
-  document.getElementById('bme').innerText = o.bme.round();
-  document.getElementById('bmco2').innerText = o.bmco2.round();
-  document.getElementById('evco2').innerText = o.evco2.round();
-  document.getElementById('iceco2').innerText = o.iceco2.round();
-  document.getElementById('diff_co2').innerText = o.diff_co2.round();
-  document.getElementById('dpar').innerText = o.dpar.round();
+function displayOuputs(o, round) {
+  if (round) {
+    document.getElementById('bme').innerText = o.bme.round();
+    document.getElementById('bmco2').innerText = o.bmco2.round();
+    document.getElementById('evco2').innerText = o.evco2.round();
+    document.getElementById('iceco2').innerText = o.iceco2.round();
+    document.getElementById('diff_co2').innerText = o.diff_co2.round();
+    document.getElementById('dpar').innerText = o.dpar.round();
+  }
+  else {
+    document.getElementById('bme').innerText = o.bme;
+    document.getElementById('bmco2').innerText = o.bmco2;
+    document.getElementById('evco2').innerText = o.evco2;
+    document.getElementById('iceco2').innerText = o.iceco2;
+    document.getElementById('diff_co2').innerText = o.diff_co2;
+    document.getElementById('dpar').innerText = o.dpar;
+  }
 }
 
 
@@ -246,8 +259,14 @@ function updateLocation() {
   var sep = '?'
   var inputs = document.getElementsByTagName('input')
   for (var el of inputs) {
-    if (el.type != 'number') continue;
-    location += sep + el.name + '=' + el.value;
+    if (el.type == 'number') {
+      location += sep + el.name + '=' + el.value;
+    }
+    else if (el.type == 'checkbox') {
+      // (notice that this encoding of checkbox is different from
+      // a standard form submission)
+      location += sep + el.name + '=' + el.checked;
+    }
     sep = '&';
   }
   window.history.replaceState({}, '', location);
@@ -266,8 +285,19 @@ function populateForm() {
   for (var [id,val] of urlParams.entries()) {
     // get corresponding <input>, if any
     var el = document.getElementById(id);
-    if (el !== null && el.value !== undefined) {
+    if (el !== null && el.type == 'number') {
       el.value = val;
+    }
+    else if (el !== null && el.type == 'checkbox') {
+      if (val=='false') {
+        el.checked = false;
+      }
+      else if (val=='true') {
+        el.checked = true;
+      }
+      else {
+        console.warn('Wrong url param for checkbox: ', id, '=', val);
+      }
     }
     else {
       console.warn('Wrong url param: ', id, '=', val);
@@ -282,7 +312,7 @@ function update() {
   console.log('update');
   var inputs = collectInputs();
   var outputs = computeOutputs(inputs);
-  displayOuputs(outputs);
+  displayOuputs(outputs, inputs.round);
   updateLocation();
 }
 
