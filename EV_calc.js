@@ -52,9 +52,12 @@ function Uncertain(nom, lb, ub, unit='') {
       // round number a, tainted by error e, to a reasonable precision
       var n=0; // extra precision wanted
       var ref; // reference number for rounding
-      if (e<Math.abs(a)) {
+      if (e < Math.abs(a)/1e6) { // tiny error (or negative)
+        ref = Math.abs(a)/1e6;
+      }
+      else if (e < Math.abs(a)) { // reasonable error
         ref = e;
-      } else {
+      } else { // huge error
         ref = Math.abs(a);
       }
       // order of magnitude of the reference number
