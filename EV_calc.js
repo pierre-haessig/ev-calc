@@ -140,6 +140,7 @@ function setInputs(vals) {
   }
 
   // update the calculator
+  setFormBounds()
   update()
 }
 
@@ -305,6 +306,28 @@ function populateForm() {
   }
 }
 
+
+/**
+ * setFormBounds - set validity of lower and upper bounds inputs
+ * with respect to the nominal value input
+ */
+function setFormBounds() {
+  for (var el of uncertain_in) {
+    var in_nom = document.getElementById(el + '_nom');
+    var in_lb = document.getElementById(el + '_lb');
+    var in_ub = document.getElementById(el + '_ub');
+
+    if (in_nom.validity.valid) {
+      in_lb.max = in_nom.value; // lower bound should be smaller than nominal
+      if (Number(in_lb.value) > Number(in_nom.value))
+        in_lb.value = in_nom.value;
+      in_ub.min = in_nom.value; // upper bound should be greater than nominal
+      if (Number(in_ub.value) < Number(in_nom.value))
+        in_ub.value = in_nom.value;
+    }
+  }
+}
+
 /**
  * update - collect inputs, compute and display results
  */
@@ -324,6 +347,7 @@ function onready() {
 
   // First computation and display
   populateForm()
+  setFormBounds()
   update()
 
   // Listen to form changes:
