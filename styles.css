@@ -62,3 +62,20 @@ p.dpar {
   border: 1px solid #0077aa;
   background-color: #ddeeff;
 }
+
+/* Animate changed values */
+
+.changed {
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-name: blink-changed;
+}
+
+@keyframes blink-changed {
+  from {
+    box-shadow: 0 0 8px #00dd77;
+  }
+  to {
+    box-shadow: 0 0 0 #00dd77;
+  }
+}

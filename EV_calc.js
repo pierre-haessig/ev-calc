@@ -233,23 +233,35 @@ function computeOutputs(inputs) {
   return outputs
 }
 
+function disp(id, o, round) {
+  var val = o[id]; // Uncertain value
+  var text = round ? val.round().toString() : val.toString();
+  var el = document.getElementById(id);
+  if (el.innerText == text) { // no change
+    return;
+  }
+  else { // changed output
+    el.innerText = text;
+    if (el.classList.contains('changed')) { // cancel animation
+        console.log('cancel animation');
+        el.classList.remove('changed'); // doesn't work
+        // todo: cancel the event listener?
+      }
+    el.classList.add('changed');
+    if (el.onanimationend === null) { // remove class at the end of the animation
+      el.onanimationend = function(){
+        console.log('animation ended for ', id);
+        this.classList.remove('changed')
+      };
+    }
+  }
+}
 
 function displayOuputs(o, round) {
-  if (round) {
-    document.getElementById('bme').innerText = o.bme.round();
-    document.getElementById('bmco2').innerText = o.bmco2.round();
-    document.getElementById('evco2').innerText = o.evco2.round();
-    document.getElementById('iceco2').innerText = o.iceco2.round();
-    document.getElementById('diff_co2').innerText = o.diff_co2.round();
-    document.getElementById('dpar').innerText = o.dpar.round();
-  }
-  else {
-    document.getElementById('bme').innerText = o.bme;
-    document.getElementById('bmco2').innerText = o.bmco2;
-    document.getElementById('evco2').innerText = o.evco2;
-    document.getElementById('iceco2').innerText = o.iceco2;
-    document.getElementById('diff_co2').innerText = o.diff_co2;
-    document.getElementById('dpar').innerText = o.dpar;
+  var out_list = ['bme', 'bmco2', 'evco2', 'iceco2', 'diff_co2', 'dpar']
+
+  for (var id of out_list) {
+    disp(id, o, round);
   }
 }
 
