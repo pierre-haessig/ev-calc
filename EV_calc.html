@@ -19,9 +19,10 @@
   <h1>Electric vs Thermal vehicle calculator</h1>
   <form method="get" id="ev-calc" name="ev-calc">
     <h2>Vehicle manufacturing</h2>
-    <div>
-      <label for="bs">Battery size:</label>
-      <input type="number" class="number" name="bs" id="bs" min="0" step="any" value="80"> kWh
+    <div class="hypothesis">
+      <label for="bs" class="nom">Battery size:</label>
+      <input type="number" class="number nom" name="bs" id="bs" min="0" step="any" value="80">
+      <span class="unit">kWh</span>
       <div class="presets">
         Presets:
         <button type="button" onclick="setInputs({bs:22})">Zoe 2012</button>
@@ -32,17 +33,19 @@
         <button type="button" onclick="setInputs({bs:90})">I-Pace 2018</button>
       </div>
     </div>
-    <div>
-      <label for="bmue_nom">Battery manufacturing energy intensity:</label>
-      <input type="number" class="number" name="bmue_nom" id="bmue_nom" min="0" step="any" value="538"> kWh/kWh,
+    <div class="hypothesis">
+      <label for="bmue_nom" class="nom">Battery manufacturing energy intensity:</label>
+      <input type="number" class="number nom" name="bmue_nom" id="bmue_nom" min="0" step="any" value="538">
+      <span class="unit">kWh/kWh,</span>
       <label for="bmue_lb" class="lb">from</label>
       <input type="number" class="number" name="bmue_lb" id="bmue_lb" min="0" step="any" value="500">
       <label for="bmue_ub" class="ub">to</label>
       <input type="number" class="number" name="bmue_ub" id="bmue_ub" min="0" step="any" value="600">
     </div>
-    <div>
-      <label for="mco2_nom">Manufacturing energy CO2 intensity:</label>
-      <input type="number" class="number" name="mco2_nom" id="mco2_nom" min="0" step="any" value="236"> gCO2/kWh,
+    <div class="hypothesis">
+      <label for="mco2_nom" class="nom">Manufacturing energy CO2 intensity:</label>
+      <input type="number" class="number nom" name="mco2_nom" id="mco2_nom" min="0" step="any" value="236">
+      <span class="unit">gCO2/kWh,</span>
       <label for="mco2_lb" class="lb">from</label>
       <input type="number" class="number" name="mco2_lb" id="mco2_lb" min="0" step="any" value="200">
       <label for="mco2_ub" class="ub">to</label>
@@ -62,25 +65,28 @@
     </p>
 
     <h2>Vehicle usage</h2>
-    <div>
-      <label for="evc_nom">EV consumption (at the plug):</label>
-      <input type="number" class="number" name="evc_nom" id="evc_nom" min="0" step="any" value="20"> kWh/100 km,
+    <div class="hypothesis">
+      <label for="evc_nom" class="nom">EV consumption (at the plug):</label>
+      <input type="number" class="number nom" name="evc_nom" id="evc_nom" min="0" step="any" value="20">
+      <span class="unit">kWh/100 km,</span>
       <label for="evc_lb" class="lb">from</label>
       <input type="number" class="number" name="evc_lb" id="evc_lb" min="0" step="any" value="19">
       <label for="evc_ub" class="ub">to</label>
       <input type="number" class="number" name="evc_ub" id="evc_ub" min="0" step="any" value="21">
     </div>
-    <div>
-      <label for="icec_nom">ICE consumption:</label>
-      <input type="number" class="number" name="icec_nom" id="icec_nom" min="0" step="any" value="6"> l/100 km,
+    <div class="hypothesis">
+      <label for="icec_nom" class="nom">ICE consumption:</label>
+      <input type="number" class="number nom" name="icec_nom" id="icec_nom" min="0" step="any" value="6">
+      <span class="unit">l/100 km,</span>
       <label for="icec_lb" class="lb">from</label>
       <input type="number" class="number" name="icec_lb" id="icec_lb" min="0" step="any" value="5.8">
       <label for="icec_ub" class="ub">to</label>
       <input type="number" class="number" name="icec_ub" id="icec_ub" min="0" step="any" value="6.2">
     </div>
-    <div>
-      <label for="cco2_nom">EV charging CO2 intensity:</label>
-      <input type="number" class="number" name="cco2_nom" id="cco2_nom" min="0" step="any" value="550"> gCO2/kWh,
+    <div class="hypothesis">
+      <label for="cco2_nom" class="nom">EV charging CO2 intensity:</label>
+      <input type="number" class="number nom" name="cco2_nom" id="cco2_nom" min="0" step="any" value="550">
+      <span class="unit">gCO2/kWh,</span>
       <label for="cco2_lb" class="lb">from</label>
       <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="500">
       <label for="cco2_ub" class="ub">to</label>
@@ -92,9 +98,10 @@
         <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">Coal</button>
       </div>
     </div>
-    <div>
-      <label for="gco2_nom">Gasoline CO2 content:</label>
-      <input type="number" class="number" name="gco2_nom" id="gco2_nom" min="0" step="any" value="2.28"> kgCO2/l
+    <div class="hypothesis">
+      <label for="gco2_nom" class="nom">Gasoline CO2 content:</label>
+      <input type="number" class="number nom" name="gco2_nom" id="gco2_nom" min="0" step="any" value="2.28">
+      <span class="unit">kgCO2/l,</span>
       <label for="gco2_lb" class="lb">from</label>
       <input type="number" class="number" name="gco2_lb" id="gco2_lb" min="0" step="any" value="2.25">
       <label for="gco2_ub" class="ub">to</label>
@@ -120,11 +127,6 @@
       <label for="round">Round results meaningfully</label>
       <input type="checkbox" checked id="round" name="round">
     </div>
-
-    <!--<div>
-      <button type="submit">Save URL</button>
-      <button type="reset">Defaults</button>
-    </div>-->
   </form>
 
   <footer>

@@ -41,9 +41,36 @@ body {
   }
 }
 
+/* Layout of the calculator */
+div.hypothesis {
+  margin: 1em 0;
+  border-left: 1px solid #0000aa;
+  padding: 5px;
+  padding-left: 1.5em;
+  background-color: #eef7ff;
+}
+
 /* Details of the calculator */
+
+label.nom {
+  display: block;
+  margin-left: -1em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input.nom {
+  /*margin-left: 1em;*/
+}
+
+.unit {
+  display: inline-block;
+  width: 7em;
+}
+
 .presets {
-  padding-left: 1em;
+  /*padding-left: 1em;*/
+  margin-top: 10px;
 }
 
 input.number {

@@ -241,12 +241,12 @@ function disp(id, o, round) {
     return;
   }
   else { // changed output
-    el.innerText = text;
     if (el.classList.contains('changed')) { // cancel animation
         console.log('cancel animation');
         el.classList.remove('changed'); // doesn't work
         // todo: cancel the event listener?
       }
+    el.innerText = text;
     el.classList.add('changed');
     if (el.onanimationend === null) { // remove class at the end of the animation
       el.onanimationend = function(){
