@@ -17,6 +17,41 @@
   <!-- page content -->
   <div class="paper">
   <h1>Electric vs Thermal vehicle calculator</h1>
+
+  <section class="intro">
+    <h2>About this calculator</h2>
+    <p>
+      With this interactive calculator, you can compare the “greenness”
+      (ecological merit) of an electric vehicle (EV) compared to a regular car
+      motored by an internal combustion engine (ICE).
+      This ecological comparison is done solely in terms of CO2 emissions.
+    </p>
+    <p>
+      The general idea is that an EV requires more energy than an ICE car
+      for its manufacturing because of the battery.
+      The EV has thus a “CO2 debt” that can be repaid after traveling
+      <em>some distance</em> if, as one may expect, the EV indeed emits
+      less CO2 during usage (CO2 per unit distance).
+      The computation of this distance to CO2 parity is the objective of
+      this calculator.
+    </p>
+    <p>
+      This distance depends on several inputs which value is difficult to
+      know precisely.
+      [link to D. Ernst <a href="http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/">article</a> here]
+      Therefore, this calculator allows you to input
+      <em>lower and upper bounds</em> for uncertain inputs
+      and then <em>propagate</em> this uncertainty down to the final result.
+      Playing a bit with the numbers, in particular the CO2 emissions of
+      electricity generation, you may soon realize that there is no clear winner!
+    </p>
+    <p>
+      My conclusion on this however is clear: vehicles should be light and small.
+      Indeed, with a small battery, EVs are definetely better than combustion-powered cars.
+      My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
+    </p>
+  </section>
+
   <form method="get" id="ev-calc" name="ev-calc">
     <h2>Vehicle manufacturing</h2>
     <div class="hypothesis">
@@ -57,12 +92,14 @@
         <button type="button" onclick="setInputs({mco2_nom:1000, mco2_lb: 900, mco2_ub: 1100})">Coal</button>
       </div>
     </div>
-    <p>EV manufacturing impacts:
+
+    <div class="result">
+      <h3>Impact of manufacturing the battery of the electric vehicle:</h3>
       <ul>
         <li>Battery manufacturing energy: <span id='bme'>…</span></li>
         <li>Battery manufacturing CO2: <span id='bmco2'>…</span></li>
       </ul>
-    </p>
+    </div>
 
     <h2>Vehicle usage</h2>
     <div class="hypothesis">
@@ -113,16 +150,22 @@
       </div>
     </div>
 
-    <h2>Results</h2>
-    <p> CO2 usage emissions:
+    <div class="result">
+      <h3>CO2 emissions of vehicle usage:</h3>
       <ul>
         <li> EV: <span id='evco2'>…</span></li>
         <li> ICE: <span id='iceco2'>…</span></li>
         <li> Difference EV-ICE: <span id='diff_co2'>…</span></li>
       </ul>
-    </p>
-    <p class='dpar'> Distance to EV-ICE CO2 parity: <span id='dpar'>…</span>
-    </p>
+    </div>
+
+    <h2>Comparison EV <em>vs</em> ICE</h2>
+
+    <div class="result final-result">
+      <h3>Distance for EV to reach CO2 parity with ICE:</h3>
+      <span id='dpar'>…</span>
+    </div>
+
     <div>
       <label for="round">Round results meaningfully</label>
       <input type="checkbox" checked id="round" name="round">
@@ -130,7 +173,17 @@
   </form>
 
   <footer>
-    <p>Pierre Haessig, April 2019</p>
+    <p>
+      <!--
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a>-->
+      This
+      <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Electric vs Thermal vehicle calculator</span>,
+      created by
+      <a xmlns:cc="http://creativecommons.org/ns#" href="https://pierreh.eu" property="cc:attributionName" rel="cc:attributionURL">Pierre Haessig</a>,
+      is made available under a
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</a>.
+    </p>
   </footer>
   </div>
 </body>

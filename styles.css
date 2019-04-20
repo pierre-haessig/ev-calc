@@ -41,7 +41,25 @@ body {
   }
 }
 
+footer {
+  font-size: 0.8em;
+  color: #777;
+  text-align: center;
+
+  margin-top: 1.5em;
+  border-top: 1px solid #777;
+}
+
+footer a {
+  color: inherit;
+}
+
 /* Layout of the calculator */
+h2 {
+  font-size: 1.25em;
+  margin-bottom: -0.5em;
+}
+
 div.hypothesis {
   margin: 1em 0;
   border-left: 1px solid #0000aa;
@@ -50,6 +68,36 @@ div.hypothesis {
   background-color: #eef7ff;
 }
 
+div.result {
+  margin: 1em 0;
+  border-left: 1px solid #aa0058;
+  padding: 5px;
+  padding-left: 1.5em;
+  background-color: #ffeef7;
+}
+
+div.final-result {
+  border: 1px solid #aa0058;
+  position: sticky;
+  bottom: 0;
+}
+
+
+.result h3 {
+  font-size: 1em;
+  margin-left: -1em;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.result ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.result li {
+  list-style: circle inside;
+}
 /* Details of the calculator */
 
 label.nom {
