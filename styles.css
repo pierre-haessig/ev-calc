@@ -10,8 +10,8 @@ html {
 
 /* Global layout */
 body {
-  font-size: 1.4em;
-  font-family: Calibri, Carlito, sans-serif;
+  /*font-size: 1.2em;*/
+  font-family: Roboto, sans-serif;
 
   background-color: #eee;
 
@@ -55,8 +55,13 @@ footer a {
 }
 
 /* Layout of the calculator */
+h1 {
+  font-weight: 300;
+}
+
 h2 {
-  font-size: 1.25em;
+  font-size: 1.4em;
+  font-weight: normal;
   margin-bottom: -0.5em;
 }
 
@@ -121,6 +126,11 @@ input.nom {
   margin-top: 10px;
 }
 
+.presets button {
+  font-size: 1em;
+  font-family: inherit;
+}
+
 input.number {
   width: 5em;
   font-size: 1em;
@@ -132,11 +142,6 @@ label.lb, label.ub {
   font-style: italic;
 }
 
-
-p.dpar {
-  border: 1px solid #0077aa;
-  background-color: #ddeeff;
-}
 
 /* Animate changed values */
 
