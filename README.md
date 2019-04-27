@@ -1,4 +1,4 @@
-# Electric vs Thermal vehicle calculator
+# Electric vs Thermal vehicle calculator web app
 
 Pierre Haessig, April 2019, CC-BY 4.0
 

@@ -56,12 +56,13 @@
     <h2>Vehicle manufacturing</h2>
     <div class="hypothesis">
       <label for="bs" class="nom">Battery size:</label>
-      <input type="number" class="number nom" name="bs" id="bs" min="0" step="any" value="80">
+      <input type="number" class="number nom" name="bs" id="bs" min="0" step="any" value="40">
       <span class="unit">kWh</span>
       <div class="presets">
         Presets:
         <!-- <button type="button" onclick="setInputs({bs:22})">Zoe 2012</button> -->
         <!-- <button type="button" onclick="setInputs({bs:41})">Zoe 2017</button> -->
+        <button type="button" onclick="setInputs({bs:0.3})">E-bike</button>
         <button type="button" onclick="setInputs({bs:24})">Nissan Leaf 2010</button>
         <button type="button" onclick="setInputs({bs:40})">Nissan Leaf 2017</button>
         <!-- <button type="button" onclick="setInputs({bs:62})">Nissan Leaf+ 2019</button> -->
@@ -87,8 +88,8 @@
       <input type="number" class="number" name="mco2_ub" id="mco2_ub" min="0" step="any" value="300">
       <div class="presets">
         Presets:
-        <button type="button" onclick="setInputs({mco2_nom:110, mco2_lb: 100, mco2_ub: 120})">FR avg</button>
-        <button type="button" onclick="setInputs({mco2_nom:236, mco2_lb: 200, mco2_ub: 300})">Def</button>
+        <button type="button" onclick="setInputs({mco2_nom:110, mco2_lb: 100, mco2_ub: 120})">French mix</button>
+        <button type="button" onclick="setInputs({cco2_nom:550, cco2_lb: 500, cco2_ub: 600})">German mix</button>
         <button type="button" onclick="setInputs({mco2_nom:1000, mco2_lb: 900, mco2_ub: 1100})">Coal</button>
       </div>
     </div>
@@ -130,8 +131,8 @@
       <input type="number" class="number" name="cco2_ub" id="cco2_ub" min="0" step="any" value="600">
       <div class="presets">
         Presets:
-        <button type="button" onclick="setInputs({cco2_nom:110, cco2_lb: 100, cco2_ub: 120})">FR avg</button>
-        <button type="button" onclick="setInputs({cco2_nom:550, cco2_lb: 500, cco2_ub: 600})">Def</button>
+        <button type="button" onclick="setInputs({cco2_nom:110, cco2_lb: 100, cco2_ub: 120})">French mix</button>
+        <button type="button" onclick="setInputs({cco2_nom:550, cco2_lb: 500, cco2_ub: 600})">German mix</button>
         <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">Coal</button>
       </div>
     </div>
