@@ -85,6 +85,7 @@ div.result {
 
 div.final-result {
   border: 1px solid #aa0058;
+  position: -webkit-sticky; /*Prefix still needed for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/position#Browser_compatibility */
   position: sticky;
   bottom: 0;
 }

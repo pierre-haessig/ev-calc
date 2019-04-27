@@ -20,32 +20,33 @@
   <section class="intro">
     <h2>About this calculator</h2>
     <p>
-      With this interactive calculator, you can compare the “greenness”
-      (ecological merit) of an electric vehicle (EV) compared to a regular car
+      With this interactive calculator, you can compare the ecological merit
+      (in terms of lifecycle CO<sub>2</sub> emissions)
+      of an electric vehicle (EV) with a thermal vehicle
       motored by an internal combustion engine (ICE).
-      This ecological comparison is done solely in terms of CO2 emissions.
     </p>
     <p>
-      The general idea is that an EV requires more energy than an ICE car
-      for its manufacturing because of the battery.
-      The EV has thus a “CO2 debt” that can be repaid after traveling
+      The general idea is that, for its manufacturing,
+      an EV requires more energy than an ICE car because of its battery.
+      The EV has thus a “CO<sub>2</sub> debt” that can be repaid after traveling
       <em>some distance</em> if, as one may expect, the EV indeed emits
-      less CO2 during usage (CO2 per unit distance).
-      The computation of this distance to CO2 parity is the objective of
+      less CO<sub>2</sub> during usage (CO<sub>2</sub> per unit distance).
+      The computation of this “distance to CO<sub>2</sub> parity” is the objective of
       this calculator.
     </p>
     <p>
-      This distance depends on several inputs which value is difficult to
-      know precisely.
-      [link to D. Ernst <a href="http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/">article</a> here]
-      Therefore, this calculator allows you to input
-      <em>lower and upper bounds</em> for uncertain inputs
-      and then <em>propagate</em> this uncertainty down to the final result.
-      Playing a bit with the numbers, in particular the CO2 emissions of
-      electricity generation, you may soon realize that there is no clear winner!
+      Distance to CO<sub>2</sub> parity depends on several inputs which value is difficult to
+      know precisely, so this calculator allows you to input
+      <em>lower and upper bounds</em> in addition to nominal values.
+      Then, it <em>propagates this uncertainty intervals</em> down to the final result.
+      Playing a bit with the numbers, in particular using coal-based electricity
+      for EV charging, the distance can get negative (EV loses to ICE)!
+      Also, wide input uncertainty can lead to infinite uncertainty
+      for parity distance.
     </p>
     <p>
-      My conclusion on this however is clear: vehicles should be light and small.
+      My conclusion on this is clear: all vehicles should be <em>light and small</em>,
+      and, if electric, should be recharged with <em>green electricity</em>.
       Indeed, with a small battery, EVs are definetely better than combustion-powered cars.
       My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
     </p>
@@ -77,9 +78,9 @@
       <input type="number" class="number" name="bmue_ub" id="bmue_ub" min="0" step="any" value="600">
     </div>
     <div class="hypothesis">
-      <label for="mco2_nom" class="nom">Manufacturing energy CO2 intensity:</label>
+      <label for="mco2_nom" class="nom">Manufacturing energy CO<sub>2</sub> intensity:</label>
       <input type="number" class="number nom" name="mco2_nom" id="mco2_nom" min="0" step="any" value="236">
-      <span class="unit">gCO2/kWh,</span>
+      <span class="unit">gCO<sub>2</sub>/kWh,</span>
       <label for="mco2_lb" class="lb">from</label>
       <input type="number" class="number" name="mco2_lb" id="mco2_lb" min="0" step="any" value="200">
       <label for="mco2_ub" class="ub">to</label>
@@ -96,7 +97,7 @@
       <h3>Impact of manufacturing the battery of the electric vehicle:</h3>
       <ul>
         <li>Battery manufacturing energy: <span id='bme'>…</span></li>
-        <li>Battery manufacturing CO2: <span id='bmco2'>…</span></li>
+        <li>Battery manufacturing CO<sub>2</sub>: <span id='bmco2'>…</span></li>
       </ul>
     </div>
 
@@ -120,9 +121,9 @@
       <input type="number" class="number" name="icec_ub" id="icec_ub" min="0" step="any" value="6.2">
     </div>
     <div class="hypothesis">
-      <label for="cco2_nom" class="nom">EV charging CO2 intensity:</label>
+      <label for="cco2_nom" class="nom">EV charging CO<sub>2</sub> intensity:</label>
       <input type="number" class="number nom" name="cco2_nom" id="cco2_nom" min="0" step="any" value="550">
-      <span class="unit">gCO2/kWh,</span>
+      <span class="unit">gCO<sub>2</sub>/kWh,</span>
       <label for="cco2_lb" class="lb">from</label>
       <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="500">
       <label for="cco2_ub" class="ub">to</label>
@@ -135,9 +136,9 @@
       </div>
     </div>
     <div class="hypothesis">
-      <label for="gco2_nom" class="nom">Fuel CO2 content:</label>
+      <label for="gco2_nom" class="nom">Fuel CO<sub>2</sub> content:</label>
       <input type="number" class="number nom" name="gco2_nom" id="gco2_nom" min="0" step="any" value="2.36">
-      <span class="unit">kgCO2/l,</span>
+      <span class="unit">kgCO<sub>2</sub>/l,</span>
       <label for="gco2_lb" class="lb">from</label>
       <input type="number" class="number" name="gco2_lb" id="gco2_lb" min="0" step="any" value="2.28">
       <label for="gco2_ub" class="ub">to</label>
@@ -150,7 +151,7 @@
     </div>
 
     <div class="result">
-      <h3>CO2 emissions of vehicle usage:</h3>
+      <h3>CO<sub>2</sub> emissions of vehicle usage:</h3>
       <ul>
         <li> EV: <span id='evco2'>…</span></li>
         <li> ICE: <span id='iceco2'>…</span></li>
@@ -161,7 +162,7 @@
     <h2>Comparison EV <em>vs</em> ICE</h2>
 
     <div class="result final-result">
-      <h3>Distance for EV to reach CO2 parity with ICE:</h3>
+      <h3>Distance for EV to reach CO<sub>2</sub> parity with ICE:</h3>
       <span id='dpar'>…</span>
     </div>
 
