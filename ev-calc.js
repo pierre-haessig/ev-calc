@@ -1,4 +1,5 @@
 'use strict';
+/* ev-calc, Pierre Haessig, 2019, CC-BY 4.0 */
 
 // uncertain input (id prefixes)
 var uncertain_in = ['bmue', 'mco2', 'evc', 'icec', 'cco2', 'gco2'];
