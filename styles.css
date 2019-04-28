@@ -127,7 +127,7 @@ input.nom {
 
 .unit {
   display: inline-block;
-  width: 7em;
+  width: 6em;
 }
 
 .presets {
@@ -141,7 +141,7 @@ input.nom {
 }
 
 input.number {
-  width: 5em;
+  width: 4em;
   font-size: 1em;
   font-family: inherit;
 }
