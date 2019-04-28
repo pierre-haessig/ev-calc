@@ -20,6 +20,9 @@
   <section class="intro">
     <h2>About this calculator</h2>
     <p>
+      <em>This app is a work in progress. Please report any issue on <a href="https://github.com/pierre-haessig/ev-calc/issues">GitHub</a> or by email.</em>
+    </p>
+    <p>
       With this interactive calculator, you can compare the ecological merit
       (in terms of lifecycle CO<sub>2</sub> emissions)
       of an electric vehicle (EV) with a thermal vehicle
@@ -89,7 +92,7 @@
       <div class="presets">
         Presets:
         <button type="button" onclick="setInputs({mco2_nom:110, mco2_lb: 100, mco2_ub: 120})">French mix</button>
-        <button type="button" onclick="setInputs({cco2_nom:550, cco2_lb: 500, cco2_ub: 600})">German mix</button>
+        <button type="button" onclick="setInputs({mco2_nom:550, mco2_lb: 500, mco2_ub: 600})">German mix</button>
         <button type="button" onclick="setInputs({mco2_nom:1000, mco2_lb: 900, mco2_ub: 1100})">Coal</button>
       </div>
     </div>
@@ -154,9 +157,9 @@
     <div class="result">
       <h3>CO<sub>2</sub> emissions of vehicle usage:</h3>
       <ul>
-        <li> EV: <span id='evco2'>…</span></li>
-        <li> ICE: <span id='iceco2'>…</span></li>
-        <li> Difference EV-ICE: <span id='diff_co2'>…</span></li>
+        <li> <h4>EV:</h4>     <span id='evco2'>…</span></li>
+        <li> <h4>ICE:</h4>    <span id='iceco2'>…</span></li>
+        <li> <h4>ICE−EV:</h4> <span id='diff_co2'>…</span></li>
       </ul>
     </div>
 
@@ -183,7 +186,10 @@
       created by
       <a xmlns:cc="http://creativecommons.org/ns#" href="https://pierreh.eu" property="cc:attributionName" rel="cc:attributionURL">Pierre Haessig</a>,
       is made available under a
-      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</a>.
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License 4.0</a>.
+    </p>
+    <p>
+      Source code available on GitHub repo <a href="https://github.com/pierre-haessig/ev-calc">pierre-haessig/ev-calc</a>.
     </p>
   </footer>
 </div><!-- /div#paper -->

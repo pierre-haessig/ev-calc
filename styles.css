@@ -106,6 +106,12 @@ div.final-result {
 .result li {
   list-style: circle inside;
 }
+
+.result li h4 {
+  display: inline-block;
+  margin: 0;
+  width: 4em;
+}
 /* Details of the calculator */
 
 label.nom {

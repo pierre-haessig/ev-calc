@@ -38,7 +38,7 @@ function Uncertain(nom, lb, ub, unit='') {
   this.toString = function(){
     unit = this.unit ? ' ' + this.unit : '';
     return this.nom.toLocaleString('en-US') + unit + " [" +
-           this.lb.toLocaleString('en-US') + " — " +
+           this.lb.toLocaleString('en-US') + " to " +
            this.ub.toLocaleString('en-US') + "]";
   }
 
