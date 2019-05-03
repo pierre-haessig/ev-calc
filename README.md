@@ -1,7 +1,11 @@
 # Electric vs Thermal vehicle calculator web app
 
-Pierre Haessig, April 2019, CC-BY 4.0
+Objective: compare the ecological merit of electric versus thermal vehicles.
 
+* App presentation page: https://pierreh.eu/ev-calc (based on this README file)
+* App page: https://pierreh.eu/ev-calc-app
+
+Pierre Haessig, April 2019, CC-BY 4.0
 
 ## About the calculator
 
