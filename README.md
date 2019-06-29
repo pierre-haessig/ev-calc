@@ -122,6 +122,17 @@ they cite several reviews concluding that manufacturing energy was “likely to 
 around 1000 MJ/kWh (e.g. their “Peters (2017)” reference).
 From this, I missed how they converged on their 350 – 650 MJ range.
 
+#### FeE report
+
+cited by Auke Hoekstra https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/
+
+> [...] I think the best and most recent source in the literature (from 2019) pegs it at 106 kg/kWh. And from industry insiders, I hear that large state-of-the-art factories are already at 65 kg/kWh. 
+
+Regett, Mauch, and Wagner. “Carbon footprint of electric vehicles - a plea for more objectivity”. Technical report, Forschungsstelle für Energiewirtschaft (FfE) e.V., February 2019. https://www.ffe.de/publikationen/pressemeldungen/856-klimabilanz-von-elektrofahrzeugen-ein-plaedoyer-fuer-mehr-sachlichkeit (German webpage with link to  report in English)
+
+> [...] Taking into account the assumptions and data documented in detail in the supplementary document, the energy-related GHG emissions amount to just under **106 kg CO2 eq. per kWh** of battery capacity produced.
+> [...] If the electricity for battery production is increasingly supplied from RES, the energy-related GHG emissions from battery production approach the emissions for raw material extraction and production of **62 kg CO2 eq. per kWh** battery capacity. 
+
 #### Default values in the calculator
 
 Based on the IVL report, including the reviews they cite, I concluded that
