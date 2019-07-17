@@ -10,19 +10,19 @@ Pierre Haessig, April 2019, CC-BY 4.0
 ## About the calculator
 
 With this interactive calculator, you can compare the ecological merit
-(in terms of lifecycle CO<sub>2</sub> emissions)
+(in terms of lifecycle CO₂ emissions)
 of an electric vehicle (EV) with a thermal vehicle
 motored by an internal combustion engine (ICE).
 
 The general idea is that, for its manufacturing,
 an EV requires more energy than an ICE car because of its battery.
-The EV has thus a “CO<sub>2</sub> debt” that can be repaid after traveling
+The EV has thus a “CO₂ debt” that can be repaid after traveling
 *some distance* if, as one may expect, the EV indeed emits
-less CO<sub>2</sub> during usage (CO<sub>2</sub> per unit distance).
-The computation of this “distance to CO<sub>2</sub> parity” is the objective of
+less CO₂ during usage (CO₂ per unit distance).
+The computation of this “distance to CO₂ parity” is the objective of
 this calculator.
 
-Distance to CO<sub>2</sub> parity depends on several inputs which value is difficult to
+Distance to CO₂ parity depends on several inputs which value is difficult to
 know precisely, so this calculator allows you to input
 *lower and upper bounds* in addition to nominal values.
 Then, it *propagates this uncertainty intervals* down to the final result.
@@ -33,7 +33,7 @@ for parity distance.
 
 My conclusion on this is clear: all vehicles should be *light and small*,
 and, if electric, should be recharged with *green electricity*.
-Indeed, with a small battery, EVs are definetely better than combustion-powered cars.
+Indeed, with a small battery, EVs are definitely better than combustion-powered cars.
 My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
 
 ## Sharing calculator results
@@ -44,7 +44,7 @@ All the input choices in the calculator are reflected in the address bar. This m
 
 The inspiration for this calculator comes from the blog article by Damien Ernst
 [“Electric car: 697,612 km to become green! True or false?”](http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/).
-Prof. Ernst got negative feedback for his huge value for CO<sub>2</sub> parity distance
+Prof. Ernst got negative feedback for his huge value for CO₂ parity distance
 (~700 000 km in his first article), including some disrespectful comments,
 but also more [constructive responses](https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/).
 This is why I'm proposing a *calculator*,
@@ -79,16 +79,16 @@ Yuan et al. “Manufacturing energy analysis of lithium ion battery pack for ele
 *CIRP Annals*, vol. 66, n. 1, 2017. doi:10.1016/j.cirp.2017.04.109. https://bit.ly/2VMa4hA
 
 from it, he extracts two energy intensity values:
-* orginal value: 3700 MJ i.e. 1027 kWh per kWh of battery
+* original value: 3700 MJ i.e. 1027 kWh per kWh of battery
 * final value: 1936 MJ i.e. 538 kWh per kWh of battery (after applying some process efficiency correction due to upscaling)
 
 Second, he multiplies this energy by a carbon emission intensity.
-He chosed 236 gCO<sub>2</sub>/kWh, which yields 127 kgCO<sub>2</sub> per kWh of battery.
+He chose 236 gCO₂/kWh, which yields 127 kgCO₂ per kWh of battery.
 
 Based on subsequent references I found, his ~2000 MJ/kWh value
-is on the high side of most estimates, but 236 gCO<sub>2</sub>/kWh is very weak
-(US electricity is around 500 gCO<sub>2</sub>/kWh, says Ernst)
-so that the product of the two, which is 127 kgCO<sub>2</sub>/kWh battery, is slightly lower than several other estimates.
+is on the high side of most estimates, but 236 gCO₂/kWh is very weak
+(US electricity is around 500 gCO₂/kWh, says Ernst)
+so that the product of the two, which is 127 kgCO₂/kWh battery, is slightly lower than several other estimates.
 
 #### IVL 2017 report
 
@@ -100,7 +100,7 @@ analyzes several recent reviews on the topic.
 The report summary states:
 
 > [...] Based on our review greenhouse gas emissions of
-> **150-200 kgCO<sub>2</sub>-eq/kWh battery**
+> **150-200 kgCO₂-eq/kWh battery**
 > looks to correspond to the greenhouse gas burden of current battery production.
 > Energy use for battery manufacturing with current technology is about
 > **350 – 650 MJ/kWh battery**.
@@ -108,14 +108,14 @@ The report summary states:
 350 – 650 MJ translates to 97 – 181 kWh (1 kWh = 3.6 MJ).
 
 Interestingly enough, taking the ratio of the central values of the two manufacturing
-impact factors (500 MJ i.e. 139 kWg/kWh and 175 kgCO<sub>2</sub>/kWh) gives a CO<sub>2</sub> intensity
-of 1260 g/kWh for the manufacturing energy, which is a quite high (coal : 1000 g/kWh).
+impact factors (500 MJ i.e. 139 kWg/kWh and 175 kgCO₂/kWh) gives a CO₂ intensity
+of 1260 g/kWh for the manufacturing energy, which is quite high (coal : 1000 g/kWh).
 
-Also, they report a wider uncertainty in the energy use than in the CO<sub>2</sub> emission
+Also, they report a wider uncertainty in the energy use than in the CO₂ emission
 and this cannot fit in my calculator which propagates uncertainty since I use,
 like Ernst, the relation:
 
-> CO<sub>2</sub> emissions = Manufacturing energy × CO<sub>2</sub> intensity of manufacturing energy
+> CO₂ emissions = Manufacturing energy × CO₂ intensity of manufacturing energy
 
 Finally, I confess there is one aspect I didn't understand in IVL report:
 they cite several reviews concluding that manufacturing energy was “likely to be”
@@ -126,58 +126,125 @@ From this, I missed how they converged on their 350 – 650 MJ range.
 
 cited by Auke Hoekstra https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/
 
-> [...] I think the best and most recent source in the literature (from 2019) pegs it at 106 kg/kWh. And from industry insiders, I hear that large state-of-the-art factories are already at 65 kg/kWh. 
+> [...] I think the best and most recent source in the literature (from 2019) pegs it at 106 kg/kWh. And from industry insiders, I hear that large state-of-the-art factories are already at 65 kg/kWh.
 
 Regett, Mauch, and Wagner. “Carbon footprint of electric vehicles - a plea for more objectivity”. Technical report, Forschungsstelle für Energiewirtschaft (FfE) e.V., February 2019. https://www.ffe.de/publikationen/pressemeldungen/856-klimabilanz-von-elektrofahrzeugen-ein-plaedoyer-fuer-mehr-sachlichkeit (German webpage with link to  report in English)
 
-> [...] Taking into account the assumptions and data documented in detail in the supplementary document, the energy-related GHG emissions amount to just under **106 kg CO2 eq. per kWh** of battery capacity produced.
-> [...] If the electricity for battery production is increasingly supplied from RES, the energy-related GHG emissions from battery production approach the emissions for raw material extraction and production of **62 kg CO2 eq. per kWh** battery capacity. 
+> [...] Taking into account the assumptions and data documented in detail in the supplementary document, the energy-related GHG emissions amount to just under **106 kg CO₂ eq. per kWh** of battery capacity produced.
+> [...] If the electricity for battery production is increasingly supplied from RES, the energy-related GHG emissions from battery production approach the emissions for raw material extraction and production of **62 kg CO₂ eq. per kWh** battery capacity.
 
 #### Default values in the calculator
 
 Based on the IVL report, including the reviews they cite, I concluded that
-the formula “CO<sub>2</sub> emissions = Manufacturing energy × CO<sub>2</sub> intensity” can be misleading,
-so I decided to set the default values for both Manufacturing energy and CO<sub>2</sub> intensity by
+the formula “CO₂ emissions = Manufacturing energy × CO₂ intensity” can be misleading,
+so I decided to set the default values for both Manufacturing energy and CO₂ intensity by
 a formula inversion to satisfy these two goals:
 
-1. CO<sub>2</sub> emissions for battery production:
-   in the range **150 – 250 kgCO<sub>2</sub>/kWh battery**, with central value 200.
+1. CO₂ emissions for battery production:
+   in the range **150 – 250 kgCO₂/kWh battery**, with central value 200.
 2. Energy use battery production: central value **1000 MJ i.e. 278 kWh/kWh battery**
 
-Therefore, I set the CO<sub>2</sub> intensity for manufacturing energy to **720 gCO<sub>2</sub>/kWh**
+Therefore, I set the CO₂ intensity for manufacturing energy to **720 gCO₂/kWh**
 (200/278×1000, quite carbon intensive), with an artificial *zero uncertainty*.
 Also, I set the relative uncertainty of manufacturing energy to be my target
 of ±50/200, which gives **750 – 1250 MJ ie. 208 – 347 kWh/kWh battery**.
 This interval is a bit narrow, but at least the central value is ok.
 
-Now, as I said in the introduction, if you are not satified with my choice, the calculator is meant to accept alternatives!
+Now, as I said in the introduction, if you are not satisfied with my choice, the calculator is meant to accept alternatives!
 
-### CO<sub>2</sub> content of fuels
+### CO₂ content of fuels
 
-For the Diesel and Gasoline preset, I've used data from the appendix of:
+Emissions due to fuel combustion depends on two main choices:
+1. choice of fuel type, e.g. Gasoline or Diesel
+2. choice to consider only direct emissions (the CO₂ produced by the combustion in the ICE)
+  or the complete “Well-to-Wheels” emissions.
+  Lifecycle fuel emissions add the emissions of CO₂,
+  or other greenhouse gases like methane counted as equivalent CO₂,
+  upstream of the combustion.
+  They occur mainly during the extraction of crude oil and its refining
+  and are collectively referred to as “Well-to-Tank” emissions.
 
-Sullivan, et al. “CO<sub>2</sub> Emission Benefit of Diesel (versus Gasoline) Powered Vehicles”.
+The choice of fuel type is open. I've included presets for the two
+most popular vehicle fuels in France: Gasoline and Diesel.
+
+**Inclusion of upstream (Well-to-Tank) emissions is recommended**,
+as highlighted by [Auke Hoekstra](https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/),
+since this is exactly what is considered for an EV: upstream emissions
+of CO₂ to produce electricity.
+
+In Ernst first calculation, he only considered direct emissions of gasoline,
+for which he took 2.28 kgCO₂/l. In his revised blog post,
+he increased this figure by a factor 1.4 to include upstream emissions.
+The source of this factor is however imprecise (“[this] number was given to me several times”).
+After reading the sources documented below, I believe this factor is in fact about 1.2.
+
+In the end, for the Diesel and Gasoline presets of the calculator,
+I've used data from the JEC Well-to-Wheels Analyses of 2014.
+Gasoline is the default.
+
+#### JEC Well-to-Wheels Analyses
+
+[JEC](https://ec.europa.eu/jrc/en/jec) (JRC-Eucar-Concawe) is a collaboration
+between the European Commission's Joint Research Centre,
+EUCAR (car industry) and CONCAWE (oil industry).
+
+> The well-to-wheels analyses by JEC pursue the objectives of estimating:
+>
+> * greenhouse gas emissions,
+> * energy efficiency and
+> * industrial costs
+>
+> of a wide range of automotive fuels and power-trains options significant for Europe in 2020 and beyond.
+
+The most recent reports are the v4.a from 2014.
+For the upstream emission of conventional fuels, the relevant report is
+the [Well-to-Tank Report](https://ec.europa.eu/jrc/en/publication/eur-scientific-and-technical-research-reports/well-tank-report-version-4a-jec-well-wheels-analysis) (EUR 26237 EN), in particular:
+
+* §3.1 “From Resource to Fuel: production routes/Crude oil pathways”
+* §4.2 “Final fuels: Energy and GHG balance/Crude oil based fuels (gasoline, diesel fuel)”
+* Appendix 1 and 2 for summary data tables
+
+Here is my conversion of JEC data in gCO₂/MJ<sub>fuel</sub> to kgCO₂/l:
+
+* Gasoline: 2.80 kgCO₂/l [2.75 – 2.85]
+* Diesel: 3.18 [3.12 – 3.23]
+  * Remark 1: the higher CO₂ volumic content of Diesel fuel (+13 %) compared to Gasoline
+    is mostly due to its higher density.
+    The higher (+20 %) emissions of Diesel refining contributes to +2 % of the total difference.
+  * Remark 2: it is more than compensated by the better efficiency
+    of Diesel motors (fewer liters/100 km).
+
+JEC uncertainty ranges come from the uncertainty of each processing step
+which are combined “with a Monte Carlo simulation”.
+Each range corresponds to the 20th and 80th percentiles of the Monte Carlo output.
+
+One aspect is explicitly not taken into account: crude oil production
+for **unconventional resources**, because it was not seen to hit European fuel market
+by 2020, the horizon of the JEC 2014 report.
+Still, they cite a 2012 analysis by IHS CERA for oil sand derived synthetic crude oil production.
+The extra 10 – 20 gCO₂/MJ<sub>fuel</sub> to be added on top of the WTT total of about
+15 gCO₂/MJ<sub>fuel</sub> means that oil sand could double up the upstream emissions
+of gasoline (the 1.2 penalty would become 1.4).
+Still, several years have passed since 2012, so an upgrade would be interesting
+for two reasons:
+1. US production of unconventional oil is has been growing faster than expected for many years.
+2. extraction technologies may be changing rapidly, which impacts emission factors
+
+#### Direct fuel emissions
+
+For data on the *direct* emissions of CO₂ only, I've found
+an article among probably many others.
+
+Sullivan, et al. “CO₂ Emission Benefit of Diesel (versus Gasoline) Powered Vehicles”.
 *Environmental Science & Technology*, vol. 38, n. 12, 2004. ACS Publications, https://pubs.acs.org/doi/full/10.1021/es034928d
 
-* Gasoline: 2.36 kgCO<sub>2</sub>/l [2.28 – 2.47]
-* Diesel: 2.65 kgCO<sub>2</sub>/l [2.58 – 2.71]
-  * remark: the higher CO<sub>2</sub> volumic content of Diesel fuel
-    compared to Gasoline is more than compensated by the increased efficiency
-    of Diesel motors
+* Gasoline: 2.36 kgCO₂/l [2.28 – 2.47]
+* Diesel: 2.65 kgCO₂/l [2.58 – 2.71]
 
-Uncertainty range comes from the uncertainty they report on the fuel densities.
+Uncertainty range comes from the uncertainty they report on fuel densities.
 
-These data accounts for the *direct* emission of CO<sub>2</sub> only,
-not *lifecycle* emissions of greenhouse gases in general.
-
-#### Other interesting sources:
-
-*left to be explored*
-
-Wikipedia FR: [Émissions directes en CO<sub>2</sub> des combustibles](https://fr.wikipedia.org/wiki/Empreinte_carbone#%C3%89missions_directes_en_CO2_des_combustibles) (emissions directes et ACV)
-
-### CO<sub>2</sub> emissions of electricy generation
+### CO₂ emissions of electricity generation
 
 * Enercoop:
-  * my own 2019 bill: 13.4 gCO<sub>2</sub>/kWh
-  * [Electricité Enercoop : quelles émissions de CO<sub>2</sub> en 2016 ?](https://www.enercoop.fr/content/electricite-enercoop-quelles-emissions-de-co2-en-2016-0)
+  * my own 2019 bill: 13.4 gCO₂/kWh
+  * [Electricité Enercoop : quelles émissions de CO₂ en 2016 ?](https://www.enercoop.fr/content/electricite-enercoop-quelles-emissions-de-co2-en-2016-0)
