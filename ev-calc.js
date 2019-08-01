@@ -6,11 +6,11 @@ var uncertain_in = ['bmue', 'mco2', 'evc', 'icec', 'cco2', 'gco2'];
 
 var input_units = {
   bmue: 'kWh/kWh',
-  mco2: 'gCO2/kWh',
+  mco2: 'gCO₂/kWh',
   evc: 'kWh/100km',
   icec: 'l/100km',
-  cco2: 'gCO2/kWh',
-  gco2: 'kgCO2/l'
+  cco2: 'gCO₂/kWh',
+  gco2: 'kgCO₂/l'
 };
 
 /**
@@ -195,24 +195,26 @@ function computeOutputs(inputs) {
   // Battery manufacturing CO2:
   var bmco2 = mul(bme,
                   mul(inputs.mco2, 1e-3));
-  bmco2.unit = 'kgCO2';
+  bmco2.unit = 'kgCO₂';
 
   // EV CO2 usage emission
-  var evco2 = mul(inputs.evc,
-                  mul(inputs.cco2, 1e-3)); //
-  evco2.unit = 'kgCO2/100km';
+  var evco2 = mul(mul(inputs.evc, 0.01), // kWh/100km × 0.01 →  kWh/km
+                  inputs.cco2);
+  evco2.unit = 'gCO₂/km';
 
   //ICE CO2
-  var iceco2 = mul(inputs.icec, inputs.gco2);
-  iceco2.unit = 'kgCO2/100km';
+  var iceco2 = mul(mul(inputs.icec, inputs.gco2),
+                   10); // kg/100km × 10 → g/km
+  iceco2.unit = 'gCO₂/km';
 
   // CO2 emission difference (ICE-EV)
-  var diff_co2 = sub(iceco2,evco2);
-  diff_co2.unit = 'kgCO2/100km';
+  var diff_co2 = sub(iceco2, evco2);
+  diff_co2.unit = 'gCO₂/km';
 
   // Distance to CO2 parity:
-  var dpar = div(bmco2,diff_co2) // 100 km
-  dpar = mul(dpar, 100); // km
+  var dpar = div(bmco2,
+                 mul(diff_co2, 1e-3)) // g/km → kg/km
+
   dpar.unit = 'km';
 
   /*console.log('BM En: ' + bme);
