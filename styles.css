@@ -69,10 +69,13 @@ h2 {
 
 div.hypothesis {
   margin: 1em 0;
-  border-left: 1px solid #0000aa;
+  border-left: 1px solid #0000cc;
   padding: 5px;
   padding-left: 1.5em;
   background-color: #eef7ff;
+  overflow-y: auto;
+  /* replaces empty <div> with clear:both; for help-boxes
+   *  cf. https://css-tricks.com/all-about-floats/        */
 }
 
 div.result {
@@ -130,16 +133,6 @@ input.nom {
   width: 6em;
 }
 
-.presets {
-  /*padding-left: 1em;*/
-  margin-top: 10px;
-}
-
-.presets button {
-  font-size: 1em;
-  font-family: inherit;
-}
-
 input.number {
   width: 4em;
   font-size: 1em;
@@ -151,6 +144,50 @@ label.lb, label.ub {
   font-style: italic;
 }
 
+/* Help boxes */
+
+.help-box {
+  border: solid 1px #0000cc;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.help-box.hidden {
+  border: none;
+  float: right;
+  margin-top: -5px;
+  padding: 0;
+}
+
+.help-btn {
+  background-color: #cde7ff;
+  border: solid 1px #0000cc;
+  float: right;
+
+}
+
+.hidden .help-btn {
+  /* background-color: red; */
+}
+
+.help-text p {
+  /* font-style: italic; */
+  margin: 0;
+}
+
+.presets {
+  /*padding-left: 1em;*/
+  margin-top: 10px;
+}
+
+.presets button {
+  font-size: 1em;
+  font-family: inherit;
+}
+
+.hidden .help-text {
+  display: none;
+}
 
 /* Animate changed values */
 

@@ -357,6 +357,30 @@ function update() {
   updateLocation();
 }
 
+
+/**
+ * setupHelp - setup eventhandlers for help boxes
+ */
+function setupHelp() {
+  function toggleHelp(e) {
+    var btn = e.target;
+    var box = btn.parentNode;
+    if (btn.innerText == "?") { // hidden → visible
+      btn.innerText = "✕"
+      box.classList.remove("hidden")
+    }
+    else if (btn.innerText == "✕") { // visible → hidden
+      btn.innerText = "?"
+      box.classList.add("hidden")
+    }
+  }
+
+  var btnList = document.querySelectorAll(".help-btn");
+  for (var btn of btnList) {
+    btn.addEventListener("click", toggleHelp);
+  }
+}
+
 /**
  * onready - entry point of the program, lauched when page is loaded
  */
@@ -367,6 +391,9 @@ function onready() {
   populateForm()
   setFormBounds()
   update()
+
+  // Setup help boxes
+  setupHelp()
 
   // Listen to form changes:
   var form = document.getElementsByTagName('form')['ev-calc'];

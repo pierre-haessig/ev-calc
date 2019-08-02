@@ -61,15 +61,24 @@
       <label for="bs" class="nom">Battery size:</label>
       <input type="number" class="number nom" name="bs" id="bs" min="0" step="any" value="40">
       <span class="unit">kWh</span>
-      <div class="presets">
-        Presets:
-        <!-- <button type="button" onclick="setInputs({bs:22})">Zoe 2012</button> -->
-        <!-- <button type="button" onclick="setInputs({bs:41})">Zoe 2017</button> -->
-        <button type="button" onclick="setInputs({bs:0.3})">E-bike</button>
-        <button type="button" onclick="setInputs({bs:24})">Nissan Leaf 2010</button>
-        <button type="button" onclick="setInputs({bs:40})">Nissan Leaf 2017</button>
-        <!-- <button type="button" onclick="setInputs({bs:62})">Nissan Leaf+ 2019</button> -->
-        <button type="button" onclick="setInputs({bs:90})">Jaguar I-Pace 2018</button>
+
+      <div class="help-box hidden">
+        <button type="button" class="help-btn">?</button>
+        <div class="help-text">
+          <p>
+          Size of the battery: the bigger, the higher car autonomy.
+          </p>
+          <div class="presets">
+            Presets:
+            <!-- <button type="button" onclick="setInputs({bs:22})">Zoe 2012</button> -->
+            <!-- <button type="button" onclick="setInputs({bs:41})">Zoe 2017</button> -->
+            <!-- <button type="button" onclick="setInputs({bs:0.3})">E-bike</button> -->
+            <!-- <button type="button" onclick="setInputs({bs:24})">Nissan Leaf 2010</button> -->
+            <button type="button" onclick="setInputs({bs:40})">Nissan Leaf 2017</button>
+            <!-- <button type="button" onclick="setInputs({bs:62})">Nissan Leaf+ 2019</button> -->
+            <button type="button" onclick="setInputs({bs:90})">Jaguar I-Pace 2018</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="hypothesis">
@@ -80,6 +89,16 @@
       <input type="number" class="number" name="bmue_lb" id="bmue_lb" min="0" step="any" value="208">
       <label for="bmue_ub" class="ub">to</label>
       <input type="number" class="number" name="bmue_ub" id="bmue_ub" min="0" step="any" value="347">
+
+      <div class="help-box hidden">
+        <button type="button" class="help-btn">?</button>
+        <div class="help-text">
+          <p>
+          How much energy does it takes to manufacture 1 kWh of battery,
+          including all processes like mining raw materials?
+          </p>
+        </div>
+      </div>
     </div>
     <div class="hypothesis">
       <label for="mco2_nom" class="nom">Manufacturing energy CO<sub>2</sub> intensity:</label>
