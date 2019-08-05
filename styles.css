@@ -78,6 +78,10 @@ div.hypothesis {
    *  cf. https://css-tricks.com/all-about-floats/        */
 }
 
+div.sub-hypothesis:not(:last-child) {
+  margin-bottom: 1em;
+}
+
 div.result {
   margin: 1em 0;
   border-left: 1px solid #aa0058;
@@ -155,24 +159,47 @@ label.lb, label.ub {
 .help-box.hidden {
   border: none;
   float: right;
-  margin-top: -5px;
+  margin-top: 0;
   padding: 0;
 }
 
-.help-btn {
+/* Help buttons */
+button.help-btn {
   background-color: #cde7ff;
   border: solid 1px #0000cc;
   float: right;
-
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
-.hidden .help-btn {
-  /* background-color: red; */
+button.help-btn::-moz-focus-inner {
+  border: 0; /* Remove the default outline when focused */
+}
+
+button.help-btn:hover,
+button.help-btn:focus {
+  background-color: #e1f1ff;
+}
+
+button.help-btn:focus {
+  outline: 1px dotted #0000cc;
+  outline-offset: -4px;
+}
+
+button.help-btn:active {
+  background-color: white;
+  transform:  scale(0.99);
 }
 
 .help-text p {
-  /* font-style: italic; */
-  margin: 0;
+  margin: 0.5em 0;
+}
+
+.help-text p:first-child {
+  margin-top: 0;
 }
 
 .presets {
