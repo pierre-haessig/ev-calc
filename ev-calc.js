@@ -196,6 +196,10 @@ function computeOutputs(inputs) {
   var bmco2 = mul(bme,
                   mul(inputs.mco2, 1e-3));
   bmco2.unit = 'kgCO₂';
+  // Battery manufacturing CO2 intensity (extra variable)
+  var bmuco2 = mul(inputs.bmue,
+                   mul(inputs.mco2, 1e-3));
+  bmuco2.unit = 'kgCO₂/kWh'
 
   // EV CO2 usage emission
   var evco2 = mul(mul(inputs.evc, 0.01), // kWh/100km × 0.01 →  kWh/km
@@ -217,16 +221,10 @@ function computeOutputs(inputs) {
 
   dpar.unit = 'km';
 
-  /*console.log('BM En: ' + bme);
-  console.log('BM CO2: ' + bmco2);
-  console.log('EV CO2: ' + evco2);
-  console.log('ICE CO2: ' + iceco2);
-  console.log('Diff CO2: ' + diff_co2);
-  console.log('Distance to CO2 parity: ' + dpar);*/
-
   var outputs = {
     bme: bme,
     bmco2: bmco2,
+    bmuco2: bmuco2,
     evco2: evco2,
     iceco2: iceco2,
     diff_co2: diff_co2,
@@ -261,7 +259,7 @@ function disp(id, o, round) {
 }
 
 function displayOuputs(o, round) {
-  var out_list = ['bme', 'bmco2', 'evco2', 'iceco2', 'diff_co2', 'dpar']
+  var out_list = ['bme', 'bmco2', 'bmuco2', 'evco2', 'iceco2', 'diff_co2', 'dpar']
 
   for (var id of out_list) {
     disp(id, o, round);

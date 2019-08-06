@@ -67,6 +67,19 @@ h2 {
   margin-bottom: -0.5em;
 }
 
+.hypothesis h3,
+.hypothesis h4,
+.result h3 {
+  font-size: 1em;
+  margin-left: -1em;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.hypothesis h4 {
+  font-weight: normal;
+}
+
 div.hypothesis {
   margin: 1em 0;
   border-left: 1px solid #0000cc;
@@ -97,14 +110,6 @@ div.final-result {
   bottom: 0;
 }
 
-
-.result h3 {
-  font-size: 1em;
-  margin-left: -1em;
-  margin-top: 0px;
-  margin-bottom: 10px;
-}
-
 .result ul {
   margin: 0px;
   padding: 0px;
@@ -120,13 +125,6 @@ div.final-result {
   width: 4em;
 }
 /* Details of the calculator */
-
-label.nom {
-  display: block;
-  margin-left: -1em;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
 
 input.nom {
   /*margin-left: 1em;*/
