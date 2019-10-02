@@ -24,34 +24,37 @@
     </p>
     <p>
       With this interactive calculator, you can compare the ecological merit
-      (in terms of lifecycle CO<sub>2</sub> emissions)
       of an electric vehicle (EV) with a thermal vehicle
       motored by an internal combustion engine (ICE).
+      Comparison is done on the lifecycle global warming potential
+      considering <a href="https://en.wikipedia.org/wiki/Carbon_dioxide_equivalent">equivalent CO<sub>2</sub></a> emissions.
+      Other interesting comparison criteria
+      such as effects on human health (like
+      <a href="https://en.wikipedia.org/wiki/Particulates">particulate matter</a> emissions) are not included here.
     </p>
     <p>
       The general idea is that, for its manufacturing,
       an EV requires more energy than an ICE car because of its battery.
       The EV has thus a “CO<sub>2</sub> debt” that can be repaid after traveling
       <em>some distance</em> if, as one may expect, the EV indeed emits
-      less CO<sub>2</sub> during usage (CO<sub>2</sub> per unit distance).
+      less CO<sub>2</sub> during its usage.
       The computation of this “distance to CO<sub>2</sub> parity” is the objective of
       this calculator.
     </p>
     <p>
       Distance to CO<sub>2</sub> parity depends on several inputs which value is difficult to
-      know precisely, so this calculator allows you to input
-      <em>lower and upper bounds</em> in addition to nominal values.
-      Then, it <em>propagates this uncertainty intervals</em> down to the final result.
+      know precisely, so this calculator allows inputting
+      an <em>uncertainty interval</em> (lower and upper bounds)
+      around each nominal value.
+      Then, it <em><a href="https://en.wikipedia.org/wiki/Interval_arithmetic">propagates</a> these uncertainty intervals</em> down to the final result.
       Playing a bit with the numbers, in particular using coal-based electricity
       for EV charging, the distance can get negative (EV loses to ICE)!
-      Also, wide input uncertainty can lead to infinite uncertainty
-      for parity distance.
+      Also, wide input uncertainty can lead to infinite uncertainty.
     </p>
     <p>
-      My conclusion on this is clear: all vehicles should be <em>light and small</em>,
-      and, if electric, should be recharged with <em>green electricity</em>.
-      Indeed, with a small battery, EVs are definetely better than combustion-powered cars.
-      My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
+      My conclusions on this are clear: all vehicles should be <em>light and small</em>.
+      If electric, they should be recharged with <em>low carbon electricity</em>.
+      Also, the lightest one I know is my e-bike (0.4 kWh battery, and about 7 Wh/km) ;-)
     </p>
   </section>
 
@@ -67,7 +70,8 @@
         <button type="button" class="help-btn">?</button>
         <div class="help-text">
           <p>
-          Size of the battery: the bigger, the higher car autonomy.
+          Size of the battery: the bigger, the higher car autonomy,
+          but the more manufacturing impact.
           </p>
           <div class="presets">
             Presets:
@@ -84,36 +88,30 @@
       <h3>Battery manufacturing</h3>
 
       <div class="sub-hypothesis">
-        <h4><label for="bmue_nom">Manufacturing energy intensity:</label></h4>
-        <input type="number" class="number nom" name="bmue_nom" id="bmue_nom" min="0" step="any" value="278">
-        <span class="unit">kWh/kWh,</span>
-        <label for="bmue_lb" class="lb">from</label>
-        <input type="number" class="number" name="bmue_lb" id="bmue_lb" min="0" step="any" value="208">
-        <label for="bmue_ub" class="ub">to</label>
-        <input type="number" class="number" name="bmue_ub" id="bmue_ub" min="0" step="any" value="347">
-      </div> <!-- .sub-hypothesis -->
-
-      <div class="sub-hypothesis">
-        <h4><label for="mco2_nom">CO<sub>2</sub> intensity of manufacturing energy:</label></h4>
-        <input type="number" class="number nom" name="mco2_nom" id="mco2_nom" min="0" step="any" value="720">
-        <span class="unit">gCO<sub>2</sub>/kWh,</span>
-        <label for="mco2_lb" class="lb">from</label>
-        <input type="number" class="number" name="mco2_lb" id="mco2_lb" min="0" step="any" value="720">
-        <label for="mco2_ub" class="ub">to</label>
-        <input type="number" class="number" name="mco2_ub" id="mco2_ub" min="0" step="any" value="720">
-      </div> <!-- .sub-hypothesis -->
-
-      <div class="sub-hypothesis">
-        <h4>Manufacturing CO<sub>2</sub> intensity:</h4>
-        <span id='bmuco2'>…</span>
+        <h4><label for="bmuco2_nom">Manufacturing CO<sub>2</sub> intensity:</label></h4>
+        <input type="number" class="number nom" name="bmuco2_nom" id="bmuco2_nom" min="0" step="any" value="175">
+        <span class="unit">kgCO<sub>2</sub>/kWh,</span>
+        <label for="bmuco2_lb" class="lb">from</label>
+        <input type="number" class="number" name="bmuco2_lb" id="bmuco2_lb" min="0" step="any" value="150">
+        <label for="bmuco2_ub" class="ub">to</label>
+        <input type="number" class="number" name="bmuco2_ub" id="bmuco2_ub" min="0" step="any" value="200">
 
         <div class="help-box hidden">
           <button type="button" class="help-btn">?</button>
           <div class="help-text">
             <p>
-              How much energy does it takes to manufacture 1 kWh of battery,
-              including all processes like mining raw materials?
-              And how much greenhouse gases does it emits?
+              How much greenhouse gases does it emit to manufacture 1 kWh of battery?
+              The figure should include all manufacturing stages:
+              mining raw materials, refining them, then manufacturing cells
+              and finally assemble a complete battery pack.
+            </p>
+            <p>
+              There are two underlying parameters for the impact of each stage:
+              the energy intensity and the carbon intensity of energy being used.
+              Thus, there are two ways to reduce the impact:
+              1) increase the energy efficiency and
+              2) use energy sources which emit less greenhouse gases.
+              Also, recycling can be very beneficial.
             </p>
             <p>
               Battery manufacturing impact is the weak point of EVs,
@@ -124,9 +122,8 @@
             </p>
             <div class="presets">
               Presets:
-              <button type="button" onclick="setInputs({mco2_nom:110, mco2_lb: 100, mco2_ub: 120})">French mix</button>
-              <button type="button" onclick="setInputs({mco2_nom:550, mco2_lb: 500, mco2_ub: 600})">German mix</button>
-              <button type="button" onclick="setInputs({mco2_nom:1000, mco2_lb: 900, mco2_ub: 1100})">Coal</button>
+              <button type="button" onclick="setInputs({bmuco2_nom:175, bmuco2_lb:150 ,bmuco2_ub:200})">IVL 2017</button>
+              <button type="button" onclick="setInputs({bmuco2_nom:106, bmuco2_lb:62 ,bmuco2_ub:162})">FfE 2019</button>
             </div>
           </div>
         </div> <!-- .help-box -->
@@ -136,7 +133,6 @@
     <div class="result">
       <h3>Impact of manufacturing the battery of the electric vehicle:</h3>
       <ul>
-        <li>Battery manufacturing energy: <span id='bme'>…</span></li>
         <li>Battery manufacturing CO<sub>2</sub>: <span id='bmco2'>…</span></li>
       </ul>
     </div>
@@ -158,26 +154,29 @@
 
       <div class="sub-hypothesis">
         <h4><label for="cco2_nom">EV charging CO<sub>2</sub> intensity:</label></h4>
-        <input type="number" class="number nom" name="cco2_nom" id="cco2_nom" min="0" step="any" value="110">
+        <input type="number" class="number nom" name="cco2_nom" id="cco2_nom" min="0" step="any" value="60">
         <span class="unit">gCO<sub>2</sub>/kWh,</span>
         <label for="cco2_lb" class="lb">from</label>
-        <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="100">
+        <input type="number" class="number" name="cco2_lb" id="cco2_lb" min="0" step="any" value="40">
         <label for="cco2_ub" class="ub">to</label>
-        <input type="number" class="number" name="cco2_ub" id="cco2_ub" min="0" step="any" value="120">
+        <input type="number" class="number" name="cco2_ub" id="cco2_ub" min="0" step="any" value="80">
 
         <div class="help-box hidden">
           <button type="button" class="help-btn">?</button>
           <div class="help-text">
             <p>
-              The key factor for the cleaness of EV usage is the carbon intensity
+              A key factor for the cleaness of EV usage is the carbon intensity
               of the electricity mix used for EV charging.
               It should be low carbon.
+              Still, even we the relatively high carbon content of the German mix
+              (which dropped by 40% since 1990),
+              an EV can do better than an ICE!
             </p>
             <div class="presets">
               Presets:
-              <button type="button" onclick="setInputs({cco2_nom:110, cco2_lb: 100, cco2_ub: 120})">French mix</button>
-              <button type="button" onclick="setInputs({cco2_nom:550, cco2_lb: 500, cco2_ub: 600})">German mix</button>
-              <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">Coal</button>
+              <button type="button" onclick="setInputs({cco2_nom:60, cco2_lb: 40, cco2_ub: 80})">French mix</button>
+              <button type="button" onclick="setInputs({cco2_nom:472, cco2_lb: 450, cco2_ub: 500})">German mix</button>
+              <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">100% Coal!</button>
             </div>
           </div>
         </div> <!-- .help-box -->
@@ -210,7 +209,7 @@
               Diesel engines are genelly more efficient than gasoline engines,
               but one should not forget the 13% extra emissions per volume
               of this fuel!
-              This reduces, but does not cancels, the advantage of Diesel.
+              This reduces, but does not cancel, the advantage of Diesel.
             </p>
             <div class="presets">
               Presets (fuel consumption of a compact car):

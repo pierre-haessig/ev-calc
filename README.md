@@ -122,7 +122,7 @@ they cite several reviews concluding that manufacturing energy was “likely to 
 around 1000 MJ/kWh (e.g. their “Peters (2017)” reference).
 From this, I missed how they converged on their 350 – 650 MJ range.
 
-#### FeE report
+#### FfE 2019 report
 
 cited by Auke Hoekstra https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/
 
