@@ -7,7 +7,13 @@ Objective: compare the ecological merit of electric versus thermal vehicles.
 
 Pierre Haessig, April 2019, CC-BY 4.0
 
+TODO: discuss T&E online tool “How clean are electric cars?”
+https://www.transportenvironment.org/news/does-electric-vehicle-emit-less-petrol-or-diesel
+(April 2020, base on IVL 2019 battery LCA)
+
 ## About the calculator
+
+TODO: update this section according to the index.html
 
 With this interactive calculator, you can compare the ecological merit
 (in terms of lifecycle CO₂ emissions)
@@ -248,3 +254,4 @@ Uncertainty range comes from the uncertainty they report on fuel densities.
 * Enercoop:
   * my own 2019 bill: 13.4 gCO₂/kWh
   * [Electricité Enercoop : quelles émissions de CO₂ en 2016 ?](https://www.enercoop.fr/content/electricite-enercoop-quelles-emissions-de-co2-en-2016-0)
+* German mix: 472 gCO₂/kWh for 2018. “The Energy Transition in the Power Sector: State of Affairs in 2018”, Agora Energiewende, January 2019 (page 30).
