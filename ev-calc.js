@@ -298,6 +298,19 @@ function updateLocation() {
 
 
 /**
+ * updateTitle - update the document title with the calculator result
+ * (distance to CO2 parity)
+ *
+ * @param  {type} dpar Uncertain value of the distance to CO2 parity
+ */
+function updateTitle(dpar, round) {
+  var title = document.title.split(':')[0];
+  var text = round ? dpar.round().toString() : dpar.toString();
+  document.title = title + ': ' + text;
+}
+
+
+/**
  * populateForm - populate inputs from the location bar params,
  * if any
  */
@@ -360,6 +373,7 @@ function update() {
   var outputs = computeOutputs(inputs);
   displayOuputs(outputs, inputs.round);
   updateLocation();
+  updateTitle(outputs["dpar"], inputs.round);
 }
 
 
@@ -398,14 +412,14 @@ function setupShare() {
     if (navigator.share) {
       navigator.share({
         title: document.title,
-        url: document.location.href
+        url: window.location.href
       }).then(() => {
         console.log('Share action successful');
       })
       .catch(console.error);
     } else {
       // Use clipboard
-      navigator.clipboard.writeText(document.location.href).then(function() {
+      navigator.clipboard.writeText(document.title + ' ' + window.location.href).then(function() {
         alert('The webpage address, with all your settings, is now copied to the clipboard. \n Share it by pasting it!')
       }, function() {
         alert('Unable to copy the webpage address to the clipboard. \n Please do it manually.')
@@ -413,6 +427,21 @@ function setupShare() {
     }
   });
 }
+
+
+/**
+ * setupReset - setup app logic for the Reset button
+ */
+function setupReset() {
+  var resetBtn = document.getElementById('resetBtn');
+  var location = window.location.href.split('?')[0];
+
+  resetBtn.addEventListener('click', function(event) {
+    console.log('Resetting values...');
+    window.location.href = location;
+  });
+}
+
 
 /**
  * onready - entry point of the program, lauched when page is loaded
@@ -426,8 +455,9 @@ function onready() {
   // Setup help boxes
   setupHelp()
 
-  // Setup Share button
+  // Setup Share and Reset buttons
   setupShare()
+  setupReset()
 
   // Listen to form changes:
   var form = document.getElementsByTagName('form')['ev-calc'];
