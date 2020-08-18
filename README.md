@@ -139,6 +139,26 @@ Regett, Mauch, and Wagner. “Carbon footprint of electric vehicles - a plea for
 > [...] Taking into account the assumptions and data documented in detail in the supplementary document, the energy-related GHG emissions amount to just under **106 kg CO₂ eq. per kWh** of battery capacity produced.
 > [...] If the electricity for battery production is increasingly supplied from RES, the energy-related GHG emissions from battery production approach the emissions for raw material extraction and production of **62 kg CO₂ eq. per kWh** battery capacity.
 
+#### IVL 2019 report
+
+Emilsson and Dahllöf. “Lithium-Ion Vehicle Battery Production – Status 2019 on Energy Use, CO2 Emissions, Use of Metals, Products Environmental Footprint, and Recycling”. Technical Report No. C 444, IVL Swedish Environmental Research Institute, November 2019. https://www.ivl.se/english/startpage/pages/publications/publication.html?id=5808
+
+This report is an update of the IVL 2017 report. Main result is:
+
+> Based on the new and transparent data,
+> an estimate of **61-106 kg CO₂-eq/kWh** battery capacity
+> was calculated for the most common type, the NMC chemistry.
+> The difference in the range depends mainly on varying
+> the electricity mix for cell production.
+
+Like in the FfE report, the lower end of the range of about 60 kg CO₂/kWh is for
+“battery manufacturing with close-to 100 percent *fossil free electricity*”.
+Authors comment that this is “not common yet, but likely will be in the future”.
+
+For the integration in the calculator, I've used the midpoint of the interval
+(84 kg CO₂/kWh) as the nominal value.
+However, the actual report does not endorse this value.
+
 #### Default values in the calculator
 
 Based on the IVL report, including the reviews they cite, I concluded that
