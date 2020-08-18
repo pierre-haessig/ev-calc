@@ -60,7 +60,7 @@
   </section>
 
   <form method="get" id="ev-calc" name="ev-calc">
-    <h2>Vehicle manufacturing</h2>
+    <h2>Vehicle manufacturing 🏭</h2>
 
     <div class="hypothesis">
       <h3><label for="bs">EV battery size:</label></h3>
@@ -140,7 +140,7 @@
     </div>
 
 
-    <h2>Vehicle usage</h2>
+    <h2>Vehicle usage 🛣️</h2>
 
     <div class="hypothesis">
       <h3>EV usage</h3>
@@ -176,9 +176,10 @@
             </p>
             <div class="presets">
               Presets:
-              <button type="button" onclick="setInputs({cco2_nom:60, cco2_lb: 40, cco2_ub: 80})">French mix</button>
-              <button type="button" onclick="setInputs({cco2_nom:472, cco2_lb: 450, cco2_ub: 500})">German mix</button>
-              <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">100% Coal!</button>
+              <button type="button" onclick="setInputs({cco2_nom:60, cco2_lb: 40, cco2_ub: 80})">French mix 🇫🇷</button>
+              <button type="button" onclick="setInputs({cco2_nom:267, cco2_lb: 300, cco2_ub: 250})">EU mix 🇪🇺</button>
+              <button type="button" onclick="setInputs({cco2_nom:414, cco2_lb: 400, cco2_ub: 500})">German mix 🇩🇪</button>
+              <button type="button" onclick="setInputs({cco2_nom:1000, cco2_lb: 900, cco2_ub: 1100})">100% Coal! 🏭</button>
             </div>
           </div>
         </div> <!-- .help-box -->
@@ -264,7 +265,7 @@
       </ul>
     </div>
 
-    <h2>Comparison EV <em>vs</em> ICE</h2>
+    <h2>Comparison EV <em>vs</em> ICE ⚖️</h2>
     <p>
       At which distance does the EV reach
       CO<sub>2</sub> parity with ICE ?
@@ -279,7 +280,11 @@
       <input type="checkbox" checked id="round" name="round">
     </div>
   </form>
-  
+
+  <p>
+    <button id="shareBtn">Share your results 📤</button>
+  </p>
+
   <footer>
     <p>
       <!--

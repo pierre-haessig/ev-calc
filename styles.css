@@ -137,7 +137,7 @@ input.nom {
 
 .unit {
   display: inline-block;
-  width: 6em;
+  /*width: 6em;*/
 }
 
 input.number {

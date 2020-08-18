@@ -1,5 +1,5 @@
 'use strict';
-/* ev-calc, Pierre Haessig, 2019, CC-BY 4.0 */
+/* ev-calc, Pierre Haessig, 2019–2020, CC-BY 4.0 */
 
 // uncertain input (id prefixes)
 var uncertain_in = ['bmuco2', 'evc', 'icec', 'cco2', 'gco2'];
@@ -36,9 +36,9 @@ function Uncertain(nom, lb, ub, unit='') {
 
   this.toString = function(){
     unit = this.unit ? ' ' + this.unit : '';
-    return this.nom.toLocaleString('en-US') + unit + " [" +
-           this.lb.toLocaleString('en-US') + " to " +
-           this.ub.toLocaleString('en-US') + "]";
+    return this.nom.toLocaleString('en-US') + unit + ' [' +
+           this.lb.toLocaleString('en-US') + ' to ' +
+           this.ub.toLocaleString('en-US') + ']';
   }
 
   this.round = function() {
@@ -132,7 +132,7 @@ function div(a,b) {
 
 
 /**
- * setInputs - set values of input fields
+ * setInputs - set values of input fields of the calculator
  *
  * @param  {object} vals mapping {id: value}
  */
@@ -159,12 +159,16 @@ function collectInputs() {
     return document.getElementById(id).value;
   }
 
-  // Battery size
+  // 1. Collect battery size (specific treatmeant because no uncertainty)
   var bs_nom = get('bs');
   var bs = new Uncertain(bs_nom); //kWh
 
   var inputs = {bs: bs};
 
+  // 2. Collect choice for the rounding of results
+  inputs.round = document.getElementById('round').checked;
+
+  // 3. Collect all the uncerain inputs
   for (let el of uncertain_in) {
     var in_nom = get(el + '_nom');
     var in_lb = get(el + '_lb');
@@ -173,9 +177,6 @@ function collectInputs() {
     var u = new Uncertain(in_nom, in_lb, in_ub, unit);
     inputs[el] = u;
   }
-
-  // rounding of results
-  inputs.round = document.getElementById('round').checked;
 
   return inputs
 }
@@ -197,7 +198,7 @@ function computeOutputs(inputs) {
                   inputs.cco2);
   evco2.unit = 'gCO₂/km';
 
-  //ICE CO2
+  // ICE CO2
   var iceco2 = mul(mul(inputs.icec, inputs.gco2),
                    10); // kg/100km × 10 → g/km
   iceco2.unit = 'gCO₂/km';
@@ -209,7 +210,6 @@ function computeOutputs(inputs) {
   // Distance to CO2 parity:
   var dpar = div(bmco2,
                  mul(diff_co2, 1e-3)) // g/km → kg/km
-
   dpar.unit = 'km';
 
   var outputs = {
@@ -223,10 +223,21 @@ function computeOutputs(inputs) {
   return outputs
 }
 
-function disp(id, o, round) {
-  var val = o[id]; // Uncertain value
+
+/**
+ * disp - display helper for each individual output value,
+ * called by displayOuputs
+ *
+ * @param  {type} id    id of an calculator output and a corresponding html element
+ * @param  {type} val   Uncertain output to be displayed
+ * @param  {type} round true or false
+ */
+function disp(id, val, round) {
+  // Convert Uncertain value to text
   var text = round ? val.round().toString() : val.toString();
+
   var el = document.getElementById(id);
+
   if (el.innerText == text) { // no change
     return;
   }
@@ -247,11 +258,18 @@ function disp(id, o, round) {
   }
 }
 
-function displayOuputs(o, round) {
+
+/**
+ * displayOuputs - display all calculator outputs
+ *
+ * @param  {type} outputs collection of Uncertain calculator outputs
+ * @param  {type} round   true or false
+ */
+function displayOuputs(outputs, round) {
   var out_list = ['bmco2', 'evco2', 'iceco2', 'diff_co2', 'dpar']
 
   for (var id of out_list) {
-    disp(id, o, round);
+    disp(id, outputs[id], round);
   }
 }
 
@@ -277,7 +295,6 @@ function updateLocation() {
   }
   window.history.replaceState({}, '', location);
 }
-
 
 
 /**
@@ -333,11 +350,12 @@ function setFormBounds() {
   }
 }
 
+
 /**
  * update - collect inputs, compute and display results
  */
 function update() {
-  console.log('update');
+  console.log('update: collect inputs, compute and display results');
   var inputs = collectInputs();
   var outputs = computeOutputs(inputs);
   displayOuputs(outputs, inputs.round);
@@ -352,28 +370,54 @@ function setupHelp() {
   function toggleHelp(e) {
     var btn = e.target;
     var box = btn.parentNode;
-    if (btn.innerText == "?") { // hidden → visible
-      btn.innerText = "✕"
-      box.classList.remove("hidden")
+    if (btn.innerText == '?') { // hidden → visible
+      btn.innerText = '✕'
+      box.classList.remove('hidden')
     }
-    else if (btn.innerText == "✕") { // visible → hidden
-      btn.innerText = "?"
-      box.classList.add("hidden")
+    else if (btn.innerText == '✕') { // visible → hidden
+      btn.innerText = '?'
+      box.classList.add('hidden')
     }
   }
 
-  var btnList = document.querySelectorAll(".help-btn");
+  var btnList = document.querySelectorAll('.help-btn');
   for (var btn of btnList) {
-    btn.addEventListener("click", toggleHelp);
+    btn.addEventListener('click', toggleHelp);
   }
+}
+
+
+/**
+ * setupShare - setup app logic for the Share button
+ */
+function setupShare() {
+  var shareBtn = document.getElementById('shareBtn');
+  shareBtn.addEventListener('click', function(event) {
+    console.log('Sharing results...');
+
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        url: document.location.href
+      }).then(() => {
+        console.log('Share action successful');
+      })
+      .catch(console.error);
+    } else {
+      // Use clipboard
+      navigator.clipboard.writeText(document.location.href).then(function() {
+        alert('The webpage address, with all your settings, is now copied to the clipboard. \n Share it by pasting it!')
+      }, function() {
+        alert('Unable to copy the webpage address to the clipboard. \n Please do it manually.')
+      });
+    }
+  });
 }
 
 /**
  * onready - entry point of the program, lauched when page is loaded
  */
 function onready() {
-  console.log('doc loaded!')
-
   // First computation and display
   populateForm()
   setFormBounds()
@@ -382,9 +426,12 @@ function onready() {
   // Setup help boxes
   setupHelp()
 
+  // Setup Share button
+  setupShare()
+
   // Listen to form changes:
   var form = document.getElementsByTagName('form')['ev-calc'];
-  form.addEventListener("input", function (event) {
+  form.addEventListener('input', function (event) {
     console.log('form input');
     update()
   }, false);
@@ -401,7 +448,7 @@ function onready() {
     let in_lb = document.getElementById(el + '_lb');
     let in_ub = document.getElementById(el + '_ub');
 
-    in_nom.addEventListener("change", function (event) {
+    in_nom.addEventListener('change', function (event) {
       if (in_nom.validity.valid) {
         in_lb.max = in_nom.value; // lower bound should be smaller than nominal
         //in_lb.reportValidity();
@@ -417,4 +464,4 @@ function onready() {
 
 };
 
-window.addEventListener("DOMContentLoaded", onready, false);
+window.addEventListener('DOMContentLoaded', onready, false);

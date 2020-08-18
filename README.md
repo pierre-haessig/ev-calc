@@ -271,7 +271,8 @@ Uncertainty range comes from the uncertainty they report on fuel densities.
 
 ### CO₂ emissions of electricity generation
 
-* Enercoop:
-  * my own 2019 bill: 13.4 gCO₂/kWh
-  * [Electricité Enercoop : quelles émissions de CO₂ en 2016 ?](https://www.enercoop.fr/content/electricite-enercoop-quelles-emissions-de-co2-en-2016-0)
-* German mix: 472 gCO₂/kWh for 2018. “The Energy Transition in the Power Sector: State of Affairs in 2018”, Agora Energiewende, January 2019 (page 30).
+* French mix: between 40 and 80 gCO₂/kWh, from various sources. Precision does not matter much when the emission factor is low.
+* UE mix: 267 gCO₂/kWh in 2019 (296 gCO₂/kWh in 2018).
+  Source: “The European Power Sector in 2019”, Agora Energiewende, February 2020 (page 31).
+* German mix: 414 gCO₂/kWh for 2019 (472 gCO₂/kWh for 2018).
+  Source: “The Energy Transition in the Power Sector: State of Affairs in 2019”, Agora Energiewende, January 2020 (page 39).
