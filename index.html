@@ -190,10 +190,10 @@
       <h3>ICE usage</h3>
       <div class="sub-hypothesis">
         <h4><label for="icec_nom">ICE consumption:</label></h4>
-        <input type="number" class="number nom" name="icec_nom" id="icec_nom" min="0" step="any" value="6">
+        <input type="number" class="number nom" name="icec_nom" id="icec_nom" min="0" step="any" value="6.0">
         <span class="unit">l/100 km,</span>
         <label for="icec_lb" class="lb">from</label>
-        <input type="number" class="number" name="icec_lb" id="icec_lb" min="0" step="any" value="5.5">
+        <input type="number" class="number" name="icec_lb" id="icec_lb" min="0" step="any" value="5.0">
         <label for="icec_ub" class="ub">to</label>
         <input type="number" class="number" name="icec_ub" id="icec_ub" min="0" step="any" value="7.0">
 
@@ -209,15 +209,17 @@
               (especially the European NEDC test which is now, at last, replaced by WLTP).
             </p>
             <p>
-              Diesel engines are genelly more efficient than gasoline engines,
+              Diesel engines are generally more efficient than gasoline engines,
               but one should not forget the 13% extra emissions per volume
               of this fuel!
               This reduces, but does not cancel, the advantage of Diesel.
             </p>
             <div class="presets">
-              Presets (fuel consumption of a compact car):
-              <button type="button" onclick="setInputs({icec_nom:6.0, icec_lb: 5.5, icec_ub: 7.0})">Gasoline engine</button>
-              <button type="button" onclick="setInputs({icec_nom:5.0, icec_lb: 4.5, icec_ub: 6.0})">Diesel engine</button>
+              Car examples:
+              <button type="button" onclick="setInputs({icec_nom:6.5, icec_lb: 5.6, icec_ub: 7.6})">Golf Gasoline</button>
+              <button type="button" onclick="setInputs({icec_nom:6.0, icec_lb: 5.0, icec_ub: 7.1})">Polo Gasoline</button>
+              <button type="button" onclick="setInputs({icec_nom:5.6, icec_lb: 4.9, icec_ub: 6.4})">Golf Diesel</button>
+              (data from <a href="https://www.spritmonitor.de/en/">Spritmonitor</a>)
             </div>
           </div>
         </div> <!-- .help-box -->

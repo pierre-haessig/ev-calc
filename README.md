@@ -178,6 +178,21 @@ This interval is a bit narrow, but at least the central value is ok.
 
 Now, as I said in the introduction, if you are not satisfied with my choice, the calculator is meant to accept alternatives!
 
+### Car fuel consumption
+
+Here are quantiles of real-world car fuel consumption taken from [Spritmonitor](https://www.spritmonitor.de/en/).
+
+- Volkswagen Golf is used as a proxy for medium cars (Segment C: Peugeot 308 or Renault Megane).
+- Volkswagen Polo is for small cars (Segment B: Peugeot 208 or Renault Zoe or Clio…)
+
+| Quantile | Golf Gasoline | Polo Gasoline | Golf Diesel |
+|---------:|--------------:|--------------:|------------:|
+|     05 % |           5.2 |           4.8 |         4.6 |
+|     10 % |           5.6 |           5.0 |         4.9 |
+|     50 % |           6.5 |           6.0 |         5.6 |
+|     90 % |           7.6 |           7.1 |         6.4 |
+|     95 % |           8.0 |           7.5 |         6.7 |
+
 ### CO₂ content of fuels
 
 Emissions due to fuel combustion depends on two main choices:
