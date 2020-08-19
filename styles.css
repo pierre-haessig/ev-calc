@@ -9,6 +9,11 @@ html {
   box-sizing: inherit;
 }
 
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: 1rem;
+}
 
 /* Global layout */
 body {
@@ -171,8 +176,6 @@ button.help-btn {
   background-color: #cde7ff;
   border: solid 1px #0000cc;
   float: right;
-  font-family: inherit;
-  font-size: 1rem;
   padding: 0;
   height: 1.5rem;
   width: 1.5rem;
