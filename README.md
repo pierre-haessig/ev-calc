@@ -7,10 +7,6 @@ Objective: compare the ecological merit of electric versus thermal vehicles.
 
 Pierre Haessig, April 2019, CC-BY 4.0
 
-TODO: discuss T&E online tool “How clean are electric cars?”
-https://www.transportenvironment.org/news/does-electric-vehicle-emit-less-petrol-or-diesel
-(April 2020, base on IVL 2019 battery LCA)
-
 ## About the calculator
 
 TODO: update this section according to the index.html
@@ -42,13 +38,19 @@ and, if electric, should be recharged with *green electricity*.
 Indeed, with a small battery, EVs are definitely better than combustion-powered cars.
 My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
 
-## Sharing calculator results
+### Sharing calculator results
 
-All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values.
+All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values. The Summer 2020 app update includes a “Share” button that copy this URL in one click!
+
+### Related works
+
+Comparisons of Electric vs Thermal vehicles have been done several times. Perhaps the most recent one, is the online tool [“How clean are electric cars?”](https://www.transportenvironment.org/what-we-do/electric-cars/how-clean-are-electric-cars) which was release in April 2020 by Transport & Environment (T&E). The companion report is well detailed. I've updated my calculator with their charging losses.
+
+One striking feature of T&E's analysis is to consider, over the lifetime of the electric vehicle, the forecasted decrease of CO₂ emissions for the electric grid of each European country.
 
 ## Inspiration
 
-The inspiration for this calculator comes from the blog article by Damien Ernst
+The inspiration for this calculator, started in Spring 2019, comes from the blog article by Damien Ernst
 [“Electric car: 697,612 km to become green! True or false?”](http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/).
 Prof. Ernst got negative feedback for his huge value for CO₂ parity distance
 (~700 000 km in his first article), including some disrespectful comments,
