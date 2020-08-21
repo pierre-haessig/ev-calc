@@ -1,12 +1,15 @@
 'use strict';
 /* ev-calc, Pierre Haessig, 2019–2020, CC-BY 4.0 */
 
-// uncertain input (id prefixes)
-var uncertain_in = ['bmuco2', 'evc', 'icec', 'cco2', 'gco2'];
+// certain and uncertain input (id prefixes)
+var certain_in = ['bs'];
+var uncertain_in = ['bmuco2', 'evc', 'cl', 'icec', 'cco2', 'gco2'];
 
 var input_units = {
+  bs: 'kWh',
   bmuco2: 'kgCO₂/kWh',
   evc: 'kWh/100km',
+  cl: '%',
   icec: 'l/100km',
   cco2: 'gCO₂/kWh',
   gco2: 'kgCO₂/l'
@@ -17,8 +20,8 @@ var input_units = {
  * @constructor
  *
  * @param  {Number} nom   nominal value
- * @param  {Number} lb    lower bound, optional
- * @param  {Number} ub    upper bound, optional (defaults to lb)
+ * @param  {Number} lb    lower bound, optional (defaults to nom)
+ * @param  {Number} ub    upper bound, optional (defaults to nom)
  * @param  {string} unit  unit, defaults to ''
  * @return {Uncertain}    Uncertain number object
  */
@@ -73,6 +76,25 @@ function Uncertain(nom, lb, ub, unit='') {
   }
 }
 
+
+/**
+ * fromCertain - create an Uncertain number from just a nominal value
+ *
+ * @param  {Number} nom   nominal value
+ * @param  {string} unit  unit, defaults to ''
+ * @return {Uncertain}    Uncertain number object
+ */
+function fromCertain(nom, unit='') {
+  return new Uncertain(nom, undefined, undefined, unit);
+}
+
+
+/**
+ * asUncertain - cast a number to Uncertain if not already one
+ *
+ * @param  {Number or Uncertain} a
+ * @return {Uncertain}    Uncertain number object
+ */
 function asUncertain(a) {
   if (!(a instanceof Uncertain)) a = new Uncertain(a);
   return a;
@@ -159,16 +181,17 @@ function collectInputs() {
     return document.getElementById(id).value;
   }
 
-  // 1. Collect battery size (specific treatmeant because no uncertainty)
-  var bs_nom = get('bs');
-  var bs = new Uncertain(bs_nom); //kWh
+  var inputs = {};
 
-  var inputs = {bs: bs};
+  // 1. Collect certain inputs (no uncertainty)
+  for (let el of certain_in) {
+    var in_nom = get(el);
+    var unit = input_units[el];
+    var u = fromCertain(in_nom, unit);
+    inputs[el] = u;
+  }
 
-  // 2. Collect choice for the rounding of results
-  inputs.round = document.getElementById('round').checked;
-
-  // 3. Collect all the uncerain inputs
+  // 2. Collect uncertain inputs
   for (let el of uncertain_in) {
     var in_nom = get(el + '_nom');
     var in_lb = get(el + '_lb');
@@ -177,6 +200,9 @@ function collectInputs() {
     var u = new Uncertain(in_nom, in_lb, in_ub, unit);
     inputs[el] = u;
   }
+
+  // 3. Collect choice for the rounding of results
+  inputs.round = document.getElementById('round').checked;
 
   return inputs
 }
@@ -194,7 +220,9 @@ function computeOutputs(inputs) {
   bmco2.unit = 'kgCO₂';
 
   // EV CO2 usage emission
-  var evco2 = mul(mul(inputs.evc, 0.01), // kWh/100km × 0.01 →  kWh/km
+  var clfactor = add(div(inputs.cl, 100), 1.) // loss factor: 5% → 1.05
+  var evc_grid = mul(inputs.evc, clfactor) // EV consumtion from grid
+  var evco2 = mul(mul(evc_grid, 0.01), // kWh/100km × 0.01 →  kWh/km
                   inputs.cco2);
   evco2.unit = 'gCO₂/km';
 

@@ -146,12 +146,22 @@
       <h3>EV usage</h3>
       <div class="sub-hypothesis">
         <h4><label for="evc_nom">EV consumption (at the plug):</label></h4>
-        <input type="number" class="number nom" name="evc_nom" id="evc_nom" min="0" step="any" value="20">
+        <input type="number" class="number nom" name="evc_nom" id="evc_nom" min="0" step="any" value="16">
         <span class="unit">kWh/100 km,</span>
         <label for="evc_lb" class="lb">from</label>
-        <input type="number" class="number" name="evc_lb" id="evc_lb" min="0" step="any" value="19">
+        <input type="number" class="number" name="evc_lb" id="evc_lb" min="0" step="any" value="14">
         <label for="evc_ub" class="ub">to</label>
-        <input type="number" class="number" name="evc_ub" id="evc_ub" min="0" step="any" value="21">
+        <input type="number" class="number" name="evc_ub" id="evc_ub" min="0" step="any" value="18">
+      </div> <!-- .sub-hypothesis -->
+
+      <div class="sub-hypothesis">
+        <h4><label for="cl">Grid and charging losses</label></h4>
+        <input type="number" class="number nom" name="cl_nom" id="cl_nom" min="0" max="100" step="any" value="18">
+        <span class="unit">%,</span>
+        <label for="cl_lb" class="lb">from</label>
+        <input type="number" class="number" name="cl_lb" id="cl_lb" min="0" max="100" step="any" value="17">
+        <label for="cl_ub" class="ub">to</label>
+        <input type="number" class="number" name="cl_ub" id="cl_ub" min="0" max="100" step="any" value="19">
       </div> <!-- .sub-hypothesis -->
 
       <div class="sub-hypothesis">

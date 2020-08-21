@@ -66,7 +66,7 @@ This enables performing a “meaningful rounding” of outputs
 based on their respective uncertainty.
 
 Here is an implementation of Damien Ernst's numbers in the calculator:
-https://pierreh.eu/ev-calc-app/?bs=80&bmue_nom=538&bmue_lb=538&bmue_ub=538&mco2_nom=236&mco2_lb=236&mco2_ub=236&evc_nom=20&evc_lb=20&evc_ub=23&icec_nom=6&icec_lb=6&icec_ub=6&cco2_nom=550&cco2_lb=317&cco2_ub=550&gco2_nom=2.28&gco2_lb=2.28&gco2_ub=3.2&round=false
+https://pierreh.eu/ev-calc-app/?bs=80&bmuco2_nom=127&bmuco2_lb=127&bmuco2_ub=127&evc_nom=20&evc_lb=20&evc_ub=20&cl_nom=0&cl_lb=0&cl_ub=0&cco2_nom=550&cco2_lb=550&cco2_ub=550&icec_nom=6&icec_lb=6&icec_ub=6&gco2_nom=2.28&gco2_lb=2.28&gco2_ub=2.28&round=false. This contains the first set of hypotheses of his blog post, which yields about 379 000 km before parity.
 
 ## References
 
@@ -283,6 +283,19 @@ Sullivan, et al. “CO₂ Emission Benefit of Diesel (versus Gasoline) Powered V
 * Diesel: 2.65 kgCO₂/l [2.58 – 2.71]
 
 Uncertainty range comes from the uncertainty they report on fuel densities.
+
+### Grid and charging losses
+
+EV consumption is often specified as the energy drawn from the battery.
+This number must be increased to account for losses during charging (inside the charger and inside the battery) and losses in the electricity grid.
+
+Citing Transport & Environment “How clean are electric cars?” 2020 report:
+
+> Electricity grid transmission and distribution losses are applied to each country based on IEA statistics.
+> On average at EU level transmission and distribution losses increase the carbon intensity of the grid by about 7%.
+> On top of this, 10% efficiency losses were added: 5% from the charger equipment and 5% from the battery charging efficiency.
+
+As the calculator default value, I've used the combination of 10% and 7% losses, which is about **18%**, with a small ±1% uncertainty range.
 
 ### CO₂ emissions of electricity generation
 
