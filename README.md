@@ -7,6 +7,11 @@ Objective: compare the ecological merit of electric versus thermal vehicles.
 
 Pierre Haessig, 2019–2020, CC-BY 4.0
 
+Notice that the app is a work in progress.
+Please report any issues on [GitHub](https://github.com/pierre-haessig/ev-calc/issues) or by email.
+
+![App banner](ev-calc-banner.svg)
+
 ## About the calculator
 
 With this interactive calculator, you can compare the ecological merit
@@ -45,26 +50,26 @@ If electric, they should be recharged with *low carbon electricity*.
 
 ### Sharing calculator results
 
-All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values. The Summer 2020 app update includes a “Share” button that copy this URL in one click.
+All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values. The summer 2020 app update includes a “Share” button that copy this URL in one click.
 
 ### Related works
 
-Comparisons of Electric vs Thermal vehicles have been done several times. Perhaps the most recent one, is the online tool [“How clean are electric cars?”](https://www.transportenvironment.org/what-we-do/electric-cars/how-clean-are-electric-cars) which was release in April 2020 by Transport & Environment (T&E). The companion report is well detailed. I've updated my calculator with their charging losses.
+Comparisons of Electric vs Thermal vehicles have been done several times. Perhaps the most recent one, is the online tool [“How clean are electric cars?”](https://www.transportenvironment.org/what-we-do/electric-cars/how-clean-are-electric-cars) which was released in April 2020 by Transport & Environment (T&E). The companion report is well detailed. I’ve updated my calculator with their charging losses.
 
-One striking feature of T&E's analysis is to consider, over the lifetime of the electric vehicle, the forecasted decrease of CO₂ emissions for the electric grid of each European country.
+One striking feature of T&E’s analysis is to consider, over the lifetime of the electric vehicle, the forecasted decrease of CO₂ emissions for the electric grid of each European country.
 
 ## Inspiration
 
-The inspiration for this calculator, started in Spring 2019, comes from the blog article by Damien Ernst
+The inspiration for this calculator, started in spring 2019, comes from the blog article by Damien Ernst
 [“Electric car: 697,612 km to become green! True or false?”](http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/).
 Prof. Ernst got negative feedback for his huge value for CO₂ parity distance
 (~700 000 km in his first article), including some disrespectful comments,
 but also more [constructive responses](https://innovationorigins.com/correcting-misinformation-about-greenhouse-gas-emissions-of-electric-vehicles-auke-hoekstras-response-to-damien-ernsts-calculations/).
-This is why I'm proposing a *calculator*,
+This is why I’m proposing a *calculator*,
 where people can put the input of their choice.
 Thus, responsibility for the output value is shifted to the user!
 
-Second, I got feedback that Ernst's value had too many digits
+Second, I got feedback that Ernst’s value had too many digits
 (“697,612 km” in the first version)
 which carries a false sense of a highly precise calculation despite the high input uncertainty.
 This is what triggered my idea to make a calculator which *propagates
@@ -72,7 +77,7 @@ uncertainty* (using [interval arithmetic](https://en.wikipedia.org/wiki/Interval
 This enables performing a “meaningful rounding” of outputs
 based on their respective uncertainty.
 
-Here is an implementation of Damien Ernst's numbers in the calculator:
+Here is an implementation of Damien Ernst’s numbers in the calculator:
 https://pierreh.eu/ev-calc-app/?bs=80&bmuco2_nom=127&bmuco2_lb=127&bmuco2_ub=127&evc_nom=20&evc_lb=20&evc_ub=20&cl_nom=0&cl_lb=0&cl_ub=0&cco2_nom=550&cco2_lb=550&cco2_ub=550&icec_nom=6&icec_lb=6&icec_ub=6&gco2_nom=2.28&gco2_lb=2.28&gco2_ub=2.28&round=false. This contains the first set of hypotheses of his blog post, which yields about 379 000 km before parity.
 
 ## References
@@ -84,7 +89,7 @@ https://pierreh.eu/ev-calc-app/?bs=80&bmuco2_nom=127&bmuco2_lb=127&bmuco2_ub=127
 On the question of *“how much does Li-ion batteries production consumes energy
 and generate greenhouse gases”*, there are substantial differences in the sources.
 
-#### Damien Ernst's figures
+#### Damien Ernst’s figures
 
 Damien Ernst used the following article in his [blog post](http://blogs.ulg.ac.be/damien-ernst/electric-697612-km-to-become-green-true-or-false/):
 
@@ -125,12 +130,12 @@ impact factors (500 MJ i.e. 139 kWg/kWh and 175 kgCO₂/kWh) gives a CO₂ inten
 of 1260 g/kWh for the manufacturing energy, which is quite high (coal : 1000 g/kWh).
 
 Also, they report a wider uncertainty in the energy use than in the CO₂ emission
-and couldn't fit in the first versions of my calculator which propagated uncertainty since I used,
+and couldn’t fit in the first versions of my calculator which propagated uncertainty since I used,
 like Ernst, the relation:
 
 > CO₂ emissions = Manufacturing energy × CO₂ intensity of manufacturing energy
 
-Finally, I confess there is one aspect I didn't understand in IVL report:
+Finally, I confess there is one aspect I didn’t understand in IVL report:
 they cite several reviews concluding that manufacturing energy was “likely to be”
 around 1000 MJ/kWh (e.g. their “Peters (2017)” reference).
 From this, I missed how they converged on their 350 – 650 MJ range.
@@ -141,7 +146,7 @@ cited by Auke Hoekstra https://innovationorigins.com/correcting-misinformation-a
 
 > [...] I think the best and most recent source in the literature (from 2019) pegs it at 106 kg/kWh. And from industry insiders, I hear that large state-of-the-art factories are already at 65 kg/kWh.
 
-Regett, Mauch, and Wagner. “Carbon footprint of electric vehicles - a plea for more objectivity”. Technical report, Forschungsstelle für Energiewirtschaft (FfE) e.V., February 2019. https://www.ffe.de/publikationen/pressemeldungen/856-klimabilanz-von-elektrofahrzeugen-ein-plaedoyer-fuer-mehr-sachlichkeit (German webpage with link to  report in English)
+Regett, Mauch, and Wagner. “Carbon footprint of electric vehicles - a plea for more objectivity”. Technical report, Forschungsstelle für Energiewirtschaft (FfE) e.V., February 2019. https://www.ffe.de/publikationen/pressemeldungen/856-klimabilanz-von-elektrofahrzeugen-ein-plaedoyer-fuer-mehr-sachlichkeit (German webpage with link to report in English)
 
 > [...] Taking into account the assumptions and data documented in detail in the supplementary document, the energy-related GHG emissions amount to just under **106 kg CO₂ eq. per kWh** of battery capacity produced.
 > [...] If the electricity for battery production is increasingly supplied from RES, the energy-related GHG emissions from battery production approach the emissions for raw material extraction and production of **62 kg CO₂ eq. per kWh** battery capacity.
@@ -168,13 +173,13 @@ Authors comment that this is “not common yet, but likely will be in the future
 Although the formula “CO₂ emissions = Manufacturing energy × CO₂ intensity”
 is nice to show the two ways to reduce battery manufacturing emissions,
 I could not make it fit in my uncertainty propagation calculator.
-Indeed, the uncertainty ranges reported in the litterature for CO₂ emissions
+Indeed, the uncertainty ranges reported in the literature for CO₂ emissions
 are often narrower than the ranges obtained by the product of the separate ranges for
 manufacturing energy and CO₂ intensity.
 Interval arithmetic is a worst-case approach while the ranges found in metanalyses
-are based on reliability judgements.
+are based on reliability judgments.
 
-Therefore, the present calculator version only use one input for manufacturing:
+Therefore, the present version of the calculator only uses one input for manufacturing:
 equivalent CO₂ emissions per kWh of battery.
 The default range is the one from the most up-to-date analysis I found: IVL 2019.
 I rounded the numbers to avoid a false sense of precision: **60 – 110 kgCO₂/kWh battery**.
@@ -197,7 +202,7 @@ Here are quantiles of real-world car fuel consumption taken from [Spritmonitor](
 |     90 % |           7.6 |           7.1 |         6.4 |
 |     95 % |           8.0 |           7.5 |         6.7 |
 
-I've used the quantiles 10% and 90% for the ranges.
+I’ve used the quantiles 10% and 90% for the ranges.
 
 
 ### CO₂ content of fuels
@@ -212,7 +217,7 @@ Emissions due to fuel combustion depends on two main choices:
   They occur mainly during the extraction of crude oil and its refining
   and are collectively referred to as “Well-to-Tank” emissions.
 
-The choice of fuel type is open. I've included presets for the two
+The choice of fuel type is open. I’ve included presets for the two
 most popular vehicle fuels in France: Gasoline and Diesel.
 
 **Inclusion of upstream (Well-to-Tank) emissions is recommended**,
@@ -227,13 +232,13 @@ The source of this factor is however imprecise (“[this] number was given to me
 After reading the sources documented below, I believe this factor is in fact about 1.2.
 
 In the end, for the Diesel and Gasoline presets of the calculator,
-I've used data from the JEC Well-to-Wheels Analyses of 2014.
+I’ve used data from the JEC Well-to-Wheels Analyses of 2014.
 Gasoline is the default.
 
 #### JEC Well-to-Wheels Analyses
 
 [JEC](https://ec.europa.eu/jrc/en/jec) (JRC-Eucar-Concawe) is a collaboration
-between the European Commission's Joint Research Centre,
+between the European Commission’s Joint Research Centre,
 EUCAR (car industry) and CONCAWE (oil industry).
 
 > The well-to-wheels analyses by JEC pursue the objectives of estimating:
@@ -280,7 +285,7 @@ for two reasons:
 
 #### Direct fuel emissions
 
-For data on the *direct* emissions of CO₂ only, I've found
+For data on the *direct* emissions of CO₂ only, I’ve found
 an article among probably many others.
 
 Sullivan, et al. “CO₂ Emission Benefit of Diesel (versus Gasoline) Powered Vehicles”.
@@ -302,7 +307,7 @@ Citing Transport & Environment “How clean are electric cars?” 2020 report:
 > On average at EU level transmission and distribution losses increase the carbon intensity of the grid by about 7%.
 > On top of this, 10% efficiency losses were added: 5% from the charger equipment and 5% from the battery charging efficiency.
 
-As the calculator default value, I've used the combination of 10% and 7% losses, which is about **18%**, with a small ±1% uncertainty range.
+As the calculator default value, I’ve used the combination of 10% and 7% losses, which is about **18%**, with a small ±1% uncertainty range.
 
 ### CO₂ emissions of electricity generation
 

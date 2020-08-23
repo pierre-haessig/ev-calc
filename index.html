@@ -19,43 +19,27 @@
   <h1><img src="ev-calc-icon.svg" id="logo"> Electric vs Thermal vehicle calculator</h1>
 
   <section class="intro">
-    <h2>About this calculator</h2>
-    <p>
-      <em>This app is a work in progress. Please report any issue on <a href="https://github.com/pierre-haessig/ev-calc/issues">GitHub</a> or by email.</em>
-    </p>
+    <h2 id="about-the-calculator">About the calculator</h2>
     <p>
       With this interactive calculator, you can compare the ecological merit
       of an electric vehicle (EV) with a thermal vehicle
       motored by an internal combustion engine (ICE).
-      Comparison is done on the lifecycle global warming potential
-      considering <a href="https://en.wikipedia.org/wiki/Carbon_dioxide_equivalent">equivalent CO<sub>2</sub></a> emissions.
+      The comparison is based on the <em>lifecycle global warming potential</em>,
+      that is counting <a href="https://en.wikipedia.org/wiki/Carbon_dioxide_equivalent">equivalent CO₂</a> emissions.
       Other interesting comparison criteria
-      such as effects on human health (like
-      <a href="https://en.wikipedia.org/wiki/Particulates">particulate matter</a> emissions) are not included here.
+      such as effects on human health (like particulate matter or NOx emissions) are not included here.
     </p>
     <p>
       The general idea is that, for its manufacturing,
       an EV requires more energy than an ICE car because of its battery.
-      The EV has thus a “CO<sub>2</sub> debt” that can be repaid after traveling
+      The EV has thus a “CO₂ debt” that can be repaid after traveling
       <em>some distance</em> if, as one may expect, the EV indeed emits
-      less CO<sub>2</sub> during its usage.
-      The computation of this “distance to CO<sub>2</sub> parity” is the objective of
+      less CO₂ during usage (CO₂ per unit distance).
+      The computation of this “distance to CO₂ parity” is the objective of
       this calculator.
     </p>
     <p>
-      Distance to CO<sub>2</sub> parity depends on several inputs which value is difficult to
-      know precisely, so this calculator allows inputting
-      an <em>uncertainty interval</em> (lower and upper bounds)
-      around each nominal value.
-      Then, it <em><a href="https://en.wikipedia.org/wiki/Interval_arithmetic">propagates</a> these uncertainty intervals</em> down to the final result.
-      Playing a bit with the numbers, in particular using coal-based electricity
-      for EV charging, the distance can get negative (EV loses to ICE)!
-      Also, wide input uncertainty can lead to infinite uncertainty.
-    </p>
-    <p>
-      My conclusions on this are clear: all vehicles should be <em>light and small</em>.
-      If electric, they should be recharged with <em>low carbon electricity</em>.
-      Also, the lightest one I know is my e-bike (0.4 kWh battery, and about 7 Wh/km) ;-)
+      Distinctive feature of this app: it accepts uncertain inputs. <em><a href="#more-about-the-calculator">Read more below…</a></em>
     </p>
   </section>
 
@@ -300,6 +284,38 @@
   <p>
     <button id="resetBtn">Reset values</button>
   </p>
+
+  <section class="intro">
+    <h2 id="more-about-the-calculator">More about the calculator</h2>
+    <h3 id="handling-uncertain-inputs">Handling uncertain inputs</h3>
+    <p>
+      The distance to CO₂ parity depends on several inputs which value is difficult to
+      know precisely, so this calculator allows you to input
+      <em>lower and upper bounds</em> in addition to nominal values.
+      Then, using <a href="https://en.wikipedia.org/wiki/Interval_arithmetic">interval arithmetic</a>, it <em>propagates uncertainties</em> down to the final result.
+    </p>
+    <p>
+      This procedure allows checking the robustness of the conclusion on whether or not an electric powertrain is better than thermal one.
+      <em>Spoiler:</em> EV generally wins to ICE, unless using highly pessimistic inputs, like using 100% coal-based electricity for EV charging or the overly optimistic ICE fuel consumption data from the NEDC standard test.
+    </p>
+    <h3 id="beyond-this-app">Beyond this app</h3>
+    <p>
+      Looking further than this slightly frivolous computational exercise,
+      my conclusion on this is clear: vehicles should be <em>light and small</em>.
+      If electric, they should be recharged with <em>low carbon electricity</em>.</p>
+    <p>
+      (Perhaps the lightest one I know is my e-bike: 0.4 kWh battery, and about 7 Wh/km 😉.)</p>
+    <h3 id="sharing-calculator-results">Sharing calculator results</h3>
+    <p>
+      All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the <code>?bs=...&amp;round=true</code> part) does include all input values. The summer 2020 app update includes a “Share” button that copy this URL in one click.</p>
+    <h3 id="related-works">Related works</h3>
+    <p>
+      Comparisons of Electric vs Thermal vehicles have been done several times. Perhaps the most recent one, is the online tool <a href="https://www.transportenvironment.org/what-we-do/electric-cars/how-clean-are-electric-cars">“How clean are electric cars?”</a> which was released in April 2020 by Transport &amp; Environment (T&amp;E). The companion report is well detailed. I’ve updated my calculator with their charging losses.
+    </p>
+    <p>
+      One striking feature of T&amp;E’s analysis is to consider, over the lifetime of the electric vehicle, the forecasted decrease of CO₂ emissions for the electric grid of each European country.
+    </p>
+  </section>
 
   <footer>
     <p>

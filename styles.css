@@ -77,6 +77,13 @@ h2 {
   margin-bottom: -0.5em;
 }
 
+h3 {
+  font-size: 1.2em;
+  font-weight: normal;
+  font-style: italic;
+  margin-bottom: -0.5em;
+}
+
 .hypothesis h3,
 .hypothesis h4,
 .result h3 {
