@@ -5,16 +5,17 @@ Objective: compare the ecological merit of electric versus thermal vehicles.
 * App presentation page: https://pierreh.eu/ev-calc (based on this README file)
 * App page: https://pierreh.eu/ev-calc-app
 
-Pierre Haessig, April 2019, CC-BY 4.0
+Pierre Haessig, 2019–2020, CC-BY 4.0
 
 ## About the calculator
 
-TODO: update this section according to the index.html
-
 With this interactive calculator, you can compare the ecological merit
-(in terms of lifecycle CO₂ emissions)
 of an electric vehicle (EV) with a thermal vehicle
 motored by an internal combustion engine (ICE).
+The comparison is based on the *lifecycle global warming potential*,
+that is counting [equivalent CO₂](https://en.wikipedia.org/wiki/Carbon_dioxide_equivalent) emissions.
+Other interesting comparison criteria
+such as effects on human health (like particulate matter or NOx emissions) are not included here.
 
 The general idea is that, for its manufacturing,
 an EV requires more energy than an ICE car because of its battery.
@@ -24,23 +25,27 @@ less CO₂ during usage (CO₂ per unit distance).
 The computation of this “distance to CO₂ parity” is the objective of
 this calculator.
 
-Distance to CO₂ parity depends on several inputs which value is difficult to
+### Handling uncertain inputs
+
+The distance to CO₂ parity depends on several inputs which value is difficult to
 know precisely, so this calculator allows you to input
 *lower and upper bounds* in addition to nominal values.
-Then, it *propagates this uncertainty intervals* down to the final result.
-Playing a bit with the numbers, in particular using coal-based electricity
-for EV charging, the distance can get negative (EV loses to ICE)!
-Also, wide input uncertainty can lead to infinite uncertainty
-for parity distance.
+Then, using [interval arithmetic](https://en.wikipedia.org/wiki/Interval_arithmetic), it *propagates uncertainties* down to the final result.
 
-My conclusion on this is clear: all vehicles should be *light and small*,
-and, if electric, should be recharged with *green electricity*.
-Indeed, with a small battery, EVs are definitely better than combustion-powered cars.
-My e-bike has only a 300 Wh (0.3 kWh) battery and consumes 6—11 Wh/km.
+This procedure allows checking the robustness of the conclusion on whether or not an electric powertrain is better than thermal one.
+*Spoiler:* EV generally wins to ICE, unless using highly pessimistic inputs, like using 100% coal-based electricity for EV charging or the overly optimistic ICE fuel consumption data from the NEDC standard test.
+
+### Beyond this app
+
+Looking further than this slightly frivolous computational exercise,
+my conclusion on this is clear: vehicles should be *light and small*.
+If electric, they should be recharged with *low carbon electricity*.
+
+(Perhaps the lightest one I know is my e-bike: 0.4 kWh battery, and about 7 Wh/km 😉.)
 
 ### Sharing calculator results
 
-All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values. The Summer 2020 app update includes a “Share” button that copy this URL in one click!
+All the input choices in the calculator are reflected in the address bar. This means that sharing the complete URL (including the `?bs=...&round=true` part) does include all input values. The Summer 2020 app update includes a “Share” button that copy this URL in one click.
 
 ### Related works
 
@@ -120,7 +125,7 @@ impact factors (500 MJ i.e. 139 kWg/kWh and 175 kgCO₂/kWh) gives a CO₂ inten
 of 1260 g/kWh for the manufacturing energy, which is quite high (coal : 1000 g/kWh).
 
 Also, they report a wider uncertainty in the energy use than in the CO₂ emission
-and this cannot fit in my calculator which propagates uncertainty since I use,
+and couldn't fit in the first versions of my calculator which propagated uncertainty since I used,
 like Ernst, the relation:
 
 > CO₂ emissions = Manufacturing energy × CO₂ intensity of manufacturing energy
@@ -157,28 +162,25 @@ Like in the FfE report, the lower end of the range of about 60 kg CO₂/kWh is f
 “battery manufacturing with close-to 100 percent *fossil free electricity*”.
 Authors comment that this is “not common yet, but likely will be in the future”.
 
-For the integration in the calculator, I've used the midpoint of the interval
-(84 kg CO₂/kWh) as the nominal value.
-However, the actual report does not endorse this value.
 
-#### Default values in the calculator
+#### Default values in the calculator for battery manufacturing
 
-Based on the IVL report, including the reviews they cite, I concluded that
-the formula “CO₂ emissions = Manufacturing energy × CO₂ intensity” can be misleading,
-so I decided to set the default values for both Manufacturing energy and CO₂ intensity by
-a formula inversion to satisfy these two goals:
+Although the formula “CO₂ emissions = Manufacturing energy × CO₂ intensity”
+is nice to show the two ways to reduce battery manufacturing emissions,
+I could not make it fit in my uncertainty propagation calculator.
+Indeed, the uncertainty ranges reported in the litterature for CO₂ emissions
+are often narrower than the ranges obtained by the product of the separate ranges for
+manufacturing energy and CO₂ intensity.
+Interval arithmetic is a worst-case approach while the ranges found in metanalyses
+are based on reliability judgements.
 
-1. CO₂ emissions for battery production:
-   in the range **150 – 250 kgCO₂/kWh battery**, with central value 200.
-2. Energy use battery production: central value **1000 MJ i.e. 278 kWh/kWh battery**
+Therefore, the present calculator version only use one input for manufacturing:
+equivalent CO₂ emissions per kWh of battery.
+The default range is the one from the most up-to-date analysis I found: IVL 2019.
+I rounded the numbers to avoid a false sense of precision: **60 – 110 kgCO₂/kWh battery**.
+The midpoint of the interval (90 kg CO₂/kWh with a pessimistic rounding)
+serves as the nominal value.
 
-Therefore, I set the CO₂ intensity for manufacturing energy to **720 gCO₂/kWh**
-(200/278×1000, quite carbon intensive), with an artificial *zero uncertainty*.
-Also, I set the relative uncertainty of manufacturing energy to be my target
-of ±50/200, which gives **750 – 1250 MJ ie. 208 – 347 kWh/kWh battery**.
-This interval is a bit narrow, but at least the central value is ok.
-
-Now, as I said in the introduction, if you are not satisfied with my choice, the calculator is meant to accept alternatives!
 
 ### Car fuel consumption
 
@@ -194,6 +196,9 @@ Here are quantiles of real-world car fuel consumption taken from [Spritmonitor](
 |     50 % |           6.5 |           6.0 |         5.6 |
 |     90 % |           7.6 |           7.1 |         6.4 |
 |     95 % |           8.0 |           7.5 |         6.7 |
+
+I've used the quantiles 10% and 90% for the ranges.
+
 
 ### CO₂ content of fuels
 
@@ -304,5 +309,6 @@ As the calculator default value, I've used the combination of 10% and 7% losses,
 * French mix: between 40 and 80 gCO₂/kWh, from various sources. Precision does not matter much when the emission factor is low.
 * UE mix: 267 gCO₂/kWh in 2019 (296 gCO₂/kWh in 2018).
   Source: “The European Power Sector in 2019”, Agora Energiewende, February 2020 (page 31).
+  - This needs a double-checking because other sources put it closer to 400 g, but I need to find authoritative figures. The difficulty is that it is decreasing quite fast along the years.
 * German mix: 414 gCO₂/kWh for 2019 (472 gCO₂/kWh for 2018).
   Source: “The Energy Transition in the Power Sector: State of Affairs in 2019”, Agora Energiewende, January 2020 (page 39).
