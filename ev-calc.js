@@ -334,7 +334,8 @@ function updateLocation() {
 function updateTitle(dpar, round) {
   var title = document.title.split(':')[0];
   var text = round ? dpar.round().toString() : dpar.toString();
-  document.title = title + ': ' + text;
+  text = text.split(' [')[0]; // remove the [lower bound, upper bound]
+  document.title = title + ': ' + text + ' to C0₂ parity';
 }
 
 
