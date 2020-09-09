@@ -7,7 +7,7 @@ Objective: compare the ecological merit of electric versus thermal vehicles.
 
 Pierre Haessig, 2019–2020, CC-BY 4.0
 
-Notice that the app is a work in progress.
+Notice that the app is always a work in progress, even if, as of September 2020, I consider it to be in an acceptable “finished” state.
 Please report any issues on [GitHub](https://github.com/pierre-haessig/ev-calc/issues) or by email.
 
 ![App banner](ev-calc-banner.svg)
